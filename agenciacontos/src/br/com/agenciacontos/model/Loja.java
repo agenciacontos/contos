@@ -21,11 +21,14 @@ public class Loja implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 //	public static final String BUSCAR_LOJA_POR_DOCUMENTO = "Loja.buscarLojaPorDocumento";
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "loja_id", nullable = false, length = 11)
 	private int id;
+	
+	@Column(name = "pessoa_id", nullable = false, length = 11)
+	private int pessoaId;
 	
 	@Column(name = "nome", nullable = true, length = 100)
 	private String nome;
@@ -93,6 +96,14 @@ public class Loja implements Serializable{
 
 	public void setModificado(Date modificado) {
 		this.modificado = modificado;
+	}
+
+	public int getPessoaId() {
+		return pessoaId;
+	}
+
+	public void setPessoaId(int pessoaId) {
+		this.pessoaId = pessoaId;
 	}
 	
 }

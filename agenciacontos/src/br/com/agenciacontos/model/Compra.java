@@ -17,7 +17,7 @@ public class Compra implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "resgate_id", nullable = false, length = 11)
+	@Column(name = "compra_id", nullable = false, length = 11)
 	private int id;
 	
 	@Id
