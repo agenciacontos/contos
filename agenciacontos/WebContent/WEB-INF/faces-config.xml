@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+	version="2.0">
+
+	<application>
+		<resource-bundle>
+			<base-name>messages</base-name>
+			<var>bundle</var>
+		</resource-bundle>
+		<message-bundle>messages</message-bundle>
+	</application>
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		
+		<navigation-case>
+			<from-outcome>cadastrarUsuario</from-outcome>
+			<to-view-id>/pages/usuario/cadastrar.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>listarMinhasLojas</from-outcome>
+			<to-view-id>/pages/loja/listarMinhas.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>fornecerPontos</from-outcome>
+			<to-view-id>/pages/loja/fornecerPontos.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>loginUsuario</from-outcome>
+			<to-view-id>/pages/public/login.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>acessoNegado</from-outcome>
+			<to-view-id>/pages/public/accessDenied.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>escolherPerfilLogin</from-outcome>
+			<to-view-id>/pages/usuario/escolherPerfilLogin.xhtml</to-view-id>
+		</navigation-case>
+		
+	</navigation-rule>
+
+</faces-config>

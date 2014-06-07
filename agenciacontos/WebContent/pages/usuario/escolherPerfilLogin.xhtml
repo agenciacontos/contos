@@ -1,0 +1,66 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/pages/protected/layout/html5.xhtml">
+<ui:define name="content"> 
+
+	<br />
+	
+	<div class="row">
+		<div class="col-md-6">
+		
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<h:form role="form" styleClass="form-horizontal">
+						<h:commandButton styleClass="btn btn-default" action="#{loginMB.gravarDadosLogin()}" value="Entrar como cliente" />
+					</h:form>
+				</div>
+			</div>
+		
+		</div>
+		<div class="col-md-6">
+
+			<div class="panel panel-default">
+				<div class="panel-body">
+		
+					<h:form role="form" styleClass="form-horizontal">
+						
+						<h:dataTable styleClass="table table-hover" value="#{loginMB.lojas}" var="loja">
+							<h:column>
+    							<f:facet name="header">Id</f:facet>
+    							#{loja.id}
+    						</h:column>
+							<h:column>
+    							<f:facet name="header">Nome</f:facet>
+    							#{loja.nomeFantasia}
+    						</h:column>
+							<h:column>
+    							<f:facet name="header">E-mail</f:facet>
+    							#{loja.email}
+    						</h:column>
+							<h:column>
+    							<f:facet name="header">Documento</f:facet>
+    							#{loja.documento}
+    						</h:column>
+							<h:column>
+    							<f:facet name="header"></f:facet>
+    							<h:commandButton styleClass="btn btn-default" actionListener="#{loginMB.setLoja(loja)}" action="#{loginMB.gravarDadosLogin()}" value="Escolher" />
+    						</h:column>
+						</h:dataTable>
+						
+					</h:form>
+		
+				</div>
+			</div>
+	
+		</div>
+	</div>
+	
+	</ui:define>
+</ui:composition>
+
+</html>
