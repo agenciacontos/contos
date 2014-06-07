@@ -13,7 +13,7 @@ import br.com.agenciacontos.enums.DocumentoTipoEnum;
 import br.com.agenciacontos.enums.UsuarioIdentificacaoTipoEnum;
 import br.com.agenciacontos.facade.LojaFacade;
 import br.com.agenciacontos.model.Loja;
-import br.com.agenciacontos.model.Pontos;
+import br.com.agenciacontos.model.Ponto;
 import br.com.agenciacontos.model.Usuario;
 import br.com.agenciacontos.seguranca.ControleAcesso;
 
@@ -29,7 +29,7 @@ public class LojaMB extends AbstractMB implements Serializable {
 	
 	private List<Loja> lojas;
 	@Inject private Usuario usuario;
-	@Inject private Pontos pontosGerados;
+	@Inject private Ponto pontosGerados;
 	
 	@PostConstruct
 	protected void init2() {  
@@ -40,7 +40,7 @@ public class LojaMB extends AbstractMB implements Serializable {
 		}
 
 		if(pontosGerados == null){
-			pontosGerados = new Pontos();
+			pontosGerados = new Ponto();
 			pontosGerados.setPontos(1L);
 		}
 		
@@ -111,11 +111,11 @@ public class LojaMB extends AbstractMB implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public Pontos getPontosGerados() {
+	public Ponto getPontosGerados() {
 		return pontosGerados;
 	}
 
-	public void setPontosGerados(Pontos pontosGerados) {
+	public void setPontosGerados(Ponto pontosGerados) {
 		this.pontosGerados = pontosGerados;
 	} 
 

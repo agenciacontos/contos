@@ -11,8 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "pontos")
-public class Pontos implements Serializable{
+@Table(name = "ponto")
+public class Ponto implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -63,8 +63,8 @@ public class Pontos implements Serializable{
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Pontos) {
-			Pontos pontos = (Pontos) obj;
+		if (obj instanceof Ponto) {
+			Ponto pontos = (Ponto) obj;
 			return pontos.getId() == id;
 		}
 		return false;

@@ -61,7 +61,7 @@ public class Usuario extends Pessoa implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return getPessoaId();
+		return pessoaId;
 	}
 
 	@Override

@@ -1,12 +1,12 @@
 package br.com.agenciacontos.dao;
  
-import br.com.agenciacontos.model.Pontos;
+import br.com.agenciacontos.model.Ponto;
  
-public class PontosDAO extends GenericDAO<Pontos> {
+public class PontosDAO extends GenericDAO<Ponto> {
 	private static final long serialVersionUID = 1L;
 
 	public PontosDAO() {
-        super(Pontos.class);
+        super(Ponto.class);
     }
  
 }

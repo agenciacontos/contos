@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "pontos_utilizados")
+@Table(name = "resgate")
 public class Resgate implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
