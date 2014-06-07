@@ -51,7 +51,7 @@ public class ControleAcesso implements Serializable {
 	 * Carregando estático, posteriormente da para fazer pegar de qualquer lugar
 	 * */
 	public void carregaAcessosPreDefinidosUsuario(Usuario usuario){
-		
+		/*
 		acessos = new ArrayList<Acesso>();
 		if(usuario.getTipo().equals(UsuarioTipoEnum.ADMIN.getCodigo())){
 
@@ -68,7 +68,7 @@ public class ControleAcesso implements Serializable {
 			acessos.add(Acesso.CADASTRAR_USUARIO);
 			acessos.add(Acesso.LISTAR_USUARIOS);
 			
-		}
+		}*/
 		
 	}
 	 

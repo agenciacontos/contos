@@ -24,22 +24,14 @@ public class Loja implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "loja_id", nullable = false, length = 11)
 	private int id;
 	
-	@Column(name = "nome_fantasia", nullable = true, length = 100)
-	private String nomeFantasia;
+	@Column(name = "nome", nullable = true, length = 100)
+	private String nome;
 	
-	@Column(name = "documento", nullable = true, unique = true, length = 15)
-	private String documento;
-	
-	@Column(name = "documento_tipo", nullable = true, length = 1)
-	private int documentoTipo;
-	
-	@Column(name = "email", nullable = true, unique = true, length = 100)
-	private String email;
-	
-	@Column(name = "ativo", nullable = true, length = 2)
-	private Boolean status;
+	@Column(name = "indicador_matriz", nullable = true)
+	private Boolean indicador_matriz;
 	
 	@Column(name = "criado", nullable = true)
 	private Date criado;
@@ -63,10 +55,6 @@ public class Loja implements Serializable{
 		return "";
 	}
 
-	
-	/**
-	 * GETS e SETS
-	 * */
 	public int getId() {
 		return id;
 	}
@@ -75,28 +63,20 @@ public class Loja implements Serializable{
 		this.id = id;
 	}
 
-	public String getNomeFantasia() {
-		return nomeFantasia;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomeFantasia(String nomeFantasia) {
-		this.nomeFantasia = nomeFantasia;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public String getDocumento() {
-		return documento;
+	public Boolean getIndicador_matriz() {
+		return indicador_matriz;
 	}
 
-	public void setDocumento(String documento) {
-		this.documento = documento;
-	}
-
-	public Boolean getStatus() {
-		return status;
-	}
-
-	public void setStatus(Boolean status) {
-		this.status = status;
+	public void setIndicador_matriz(Boolean indicador_matriz) {
+		this.indicador_matriz = indicador_matriz;
 	}
 
 	public Date getCriado() {
@@ -113,22 +93,6 @@ public class Loja implements Serializable{
 
 	public void setModificado(Date modificado) {
 		this.modificado = modificado;
-	}
-
-	public int getDocumentoTipo() {
-		return documentoTipo;
-	}
-
-	public void setDocumentoTipo(int documentoTipo) {
-		this.documentoTipo = documentoTipo;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 	
 }

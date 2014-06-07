@@ -6,21 +6,21 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
-import br.com.agenciacontos.model.UsuarioLoja;
+import br.com.agenciacontos.model.PessoaLoja;
 
-public class UsuarioLojaDAO extends GenericDAO<UsuarioLoja> {
+public class PessoaLojaDAO extends GenericDAO<PessoaLoja> {
 	private static final long serialVersionUID = 1L;
 
-	public UsuarioLojaDAO() {
-		super(UsuarioLoja.class);
+	public PessoaLojaDAO() {
+		super(PessoaLoja.class);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<UsuarioLoja> listarLojasPorUsuario(Integer usuario_id){
+	public List<PessoaLoja> listarLojasPorUsuario(Integer usuario_id){
 		
 //		beginTransaction();
 		
-		Criteria criteria = getSession().createCriteria(UsuarioLoja.class);
+		Criteria criteria = getSession().createCriteria(PessoaLoja.class);
 		Criterion paramUsuarioId = Restrictions.eq("usuarioId", usuario_id);
 		criteria.add(paramUsuarioId);
 		
@@ -30,7 +30,7 @@ public class UsuarioLojaDAO extends GenericDAO<UsuarioLoja> {
 
 	}
 	
-	public void delete(UsuarioLoja usuarioLoja) {
-        	super.delete(usuarioLoja.getId(), UsuarioLoja.class);
+	public void delete(PessoaLoja pessoaLoja) {
+//        	super.delete(pessoaLoja.getId(), PessoaLoja.class);
 	}
 }

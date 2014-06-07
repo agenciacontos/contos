@@ -25,7 +25,7 @@ public class UsuarioMB extends AbstractMB implements Serializable {
 
 		try {
 			
-			getUsuario().setTipo(UsuarioTipoEnum.CLIENTE.getCodigo());
+			getUsuario().setUsuarioTipo(UsuarioTipoEnum.CLIENTE.getCodigo());
 			
 			usuarioFacade.cadastrarUsuario(getUsuario());
 			

@@ -11,37 +11,44 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "pontos_gerados")
-public class PontosGerados implements Serializable{
+@Table(name = "pontos")
+public class Pontos implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column(name = "usuario_id", nullable = false, length = 11)
-	private int usuarioId;
-	
+	@Id
 	@Column(name = "loja_id", nullable = false, length = 11)
 	private int lojaId;
 	
-	@Column(name = "usuario_executante_id", nullable = false, length = 11)
-	private int usuarioExecutanteId;
+	@Column(name = "pessoa_id", nullable = false, length = 11)
+	private int pessoaId;
 	
-	@Column(name = "pontos", nullable = false, length = 11)
+	@Column(name = "compra_id", nullable = false, length = 11)
+	private int compraId;
+
+	@Column(name = "codigo_tipo_conversao", nullable = false, length = 2)
+	private Integer codigoTipoConversao;
+
+	@Column(name = "cartao", nullable = true)
+	private Integer cartao;
+	
+	@Column(name = "descricao", nullable = true)
+	private String descricao;
+
+	@Column(name = "pontos", nullable = true)
 	private Long pontos;
 	
-	@Column(name = "motivo", nullable = true)
-	private String motivo;
+	@Column(name = "valor", nullable = true)
+	private Double valor;
 	
 	@Column(name = "data", nullable = true)
 	private Date data;
 
 	@Column(name = "validade", nullable = true)
 	private Date validade;
-
-	@Column(name = "status", nullable = false, length = 2)
-	private Integer status;
 	
 	@Column(name = "criado", nullable = true)
 	private Date criado;
@@ -51,21 +58,18 @@ public class PontosGerados implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return usuarioId+lojaId+usuarioExecutanteId;
+		return id+lojaId;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof PontosGerados) {
-			PontosGerados pontosGerados = (PontosGerados) obj;
-			return pontosGerados.getId() == id;
+		if (obj instanceof Pontos) {
+			Pontos pontos = (Pontos) obj;
+			return pontos.getId() == id;
 		}
 		return false;
 	}
-	
-	/**
-	 * GETS e SETS
-	 * */
+
 	public int getId() {
 		return id;
 	}
@@ -82,6 +86,46 @@ public class PontosGerados implements Serializable{
 		this.lojaId = lojaId;
 	}
 
+	public int getPessoaId() {
+		return pessoaId;
+	}
+
+	public void setPessoaId(int pessoaId) {
+		this.pessoaId = pessoaId;
+	}
+
+	public int getCompraId() {
+		return compraId;
+	}
+
+	public void setCompraId(int compraId) {
+		this.compraId = compraId;
+	}
+
+	public Integer getCodigoTipoConversao() {
+		return codigoTipoConversao;
+	}
+
+	public void setCodigoTipoConversao(Integer codigoTipoConversao) {
+		this.codigoTipoConversao = codigoTipoConversao;
+	}
+
+	public Integer getCartao() {
+		return cartao;
+	}
+
+	public void setCartao(Integer cartao) {
+		this.cartao = cartao;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
 	public Long getPontos() {
 		return pontos;
 	}
@@ -90,12 +134,12 @@ public class PontosGerados implements Serializable{
 		this.pontos = pontos;
 	}
 
-	public String getMotivo() {
-		return motivo;
+	public Double getValor() {
+		return valor;
 	}
 
-	public void setMotivo(String motivo) {
-		this.motivo = motivo;
+	public void setValor(Double valor) {
+		this.valor = valor;
 	}
 
 	public Date getData() {
@@ -114,14 +158,6 @@ public class PontosGerados implements Serializable{
 		this.validade = validade;
 	}
 
-	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
 	public Date getCriado() {
 		return criado;
 	}
@@ -136,22 +172,6 @@ public class PontosGerados implements Serializable{
 
 	public void setModificado(Date modificado) {
 		this.modificado = modificado;
-	}
-
-	public int getUsuarioExecutanteId() {
-		return usuarioExecutanteId;
-	}
-
-	public void setUsuarioExecutanteId(int usuarioExecutanteId) {
-		this.usuarioExecutanteId = usuarioExecutanteId;
-	}
-
-	public int getUsuarioId() {
-		return usuarioId;
-	}
-
-	public void setUsuarioId(int usuarioId) {
-		this.usuarioId = usuarioId;
 	}
 	
 }

@@ -27,9 +27,10 @@ public class UsuarioFacade extends AbstractFacade implements Serializable{
 	
 	public void cadastrarUsuario(Usuario usuario) throws Exception {
 		
-		if(usuarioDAO.buscarUsuarioPorEmail(usuario.getEmail()) != null){
-			throw new Exception("O e-mail utilizado ja consta na base de dados.");
-		}
+		//TODO refazer apra buscar nos emails
+//		if(usuarioDAO.buscarUsuarioPorEmail(usuario.getEmail()) != null){
+//			throw new Exception("O e-mail utilizado ja consta na base de dados.");
+//		}
 		if(usuarioDAO.buscarUsuarioPorDocumento(usuario.getDocumento()) != null){
 			throw new Exception("O documento utilizado ja consta na base de dados.");
 		}
@@ -54,12 +55,12 @@ public class UsuarioFacade extends AbstractFacade implements Serializable{
 		persistedUsuario.setCriado(usuario.getCriado());
 		persistedUsuario.setDocumento(usuario.getDocumento());
 		persistedUsuario.setDocumentoTipo(usuario.getDocumentoTipo());
-		persistedUsuario.setEmail(usuario.getEmail());
+//		persistedUsuario.setEmail(usuario.getEmail());
 //		persistedUsuario.setId(usuario.getId());
 		persistedUsuario.setModificado(usuario.getModificado());
 		persistedUsuario.setNome(usuario.getNome());
 //		persistedUsuario.setPassword(usuario.getSenha());
-		persistedUsuario.setTipo(usuario.getTipo());
+//		persistedUsuario.setTipo(usuario.getTipo());
 
 		usuarioDAO.beginTransaction();
 		usuarioDAO.update(persistedUsuario);

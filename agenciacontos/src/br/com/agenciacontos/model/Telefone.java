@@ -17,10 +17,12 @@ public class Telefone implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "telefone_id", nullable = false, length = 11)
 	private int id;
 	
-	@Column(name = "usuario_id", nullable = false, length = 11)
-	private int usuarioId;
+	@Id
+	@Column(name = "pessoa_id", nullable = false, length = 11)
+	private int pessoaId;
 
 	@Column(name = "ddi", nullable = true, length = 5)
 	private String ddi;
@@ -28,11 +30,20 @@ public class Telefone implements Serializable{
 	@Column(name = "ddd", nullable = true, length = 5)
 	private String ddd;
 
-	@Column(name = "telefone", nullable = true, length = 15)
-	private String telefone;
+	@Column(name = "numero", nullable = true, length = 15)
+	private String numero;
 
 	@Column(name = "telefone_tipo", nullable = true, length = 20)
 	private String telefoneTipo;
+
+	@Column(name = "indicador_preferencial", nullable = true)
+	private Boolean indicador_preferencial;
+	
+	@Column(name = "data_inicio", nullable = true)
+	private Date data_inicio;
+	
+	@Column(name = "data_fim", nullable = true)
+	private Date data_fim;
 
 	@Column(name = "criado", nullable = true)
 	private Date criado;
@@ -42,7 +53,7 @@ public class Telefone implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return id;
+		return id+pessoaId;
 	}
 
 	@Override
@@ -55,11 +66,7 @@ public class Telefone implements Serializable{
 	public String toString() {
 		return "";
 	}
-	
-	
-	/**
-	 * GETS e SETS
-	 * */
+
 	public int getId() {
 		return id;
 	}
@@ -68,12 +75,12 @@ public class Telefone implements Serializable{
 		this.id = id;
 	}
 
-	public int getUsuarioId() {
-		return usuarioId;
+	public int getPessoaId() {
+		return pessoaId;
 	}
 
-	public void setUsuarioId(int usuarioId) {
-		this.usuarioId = usuarioId;
+	public void setPessoaId(int pessoaId) {
+		this.pessoaId = pessoaId;
 	}
 
 	public String getDdi() {
@@ -92,12 +99,12 @@ public class Telefone implements Serializable{
 		this.ddd = ddd;
 	}
 
-	public String getTelefone() {
-		return telefone;
+	public String getNumero() {
+		return numero;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
 
 	public String getTelefoneTipo() {
@@ -106,6 +113,30 @@ public class Telefone implements Serializable{
 
 	public void setTelefoneTipo(String telefoneTipo) {
 		this.telefoneTipo = telefoneTipo;
+	}
+
+	public Boolean getIndicador_preferencial() {
+		return indicador_preferencial;
+	}
+
+	public void setIndicador_preferencial(Boolean indicador_preferencial) {
+		this.indicador_preferencial = indicador_preferencial;
+	}
+
+	public Date getData_inicio() {
+		return data_inicio;
+	}
+
+	public void setData_inicio(Date data_inicio) {
+		this.data_inicio = data_inicio;
+	}
+
+	public Date getData_fim() {
+		return data_fim;
+	}
+
+	public void setData_fim(Date data_fim) {
+		this.data_fim = data_fim;
 	}
 
 	public Date getCriado() {
@@ -123,5 +154,4 @@ public class Telefone implements Serializable{
 	public void setModificado(Date modificado) {
 		this.modificado = modificado;
 	}
-	
 }

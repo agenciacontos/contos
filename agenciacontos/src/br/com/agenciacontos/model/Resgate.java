@@ -11,29 +11,35 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "contrato_loja")
-public class ContratoLoja implements Serializable{
+@Table(name = "pontos_utilizados")
+public class Resgate implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "resgate_id", nullable = false, length = 11)
 	private int id;
 	
+	@Id
+	@Column(name = "pessoa_id", nullable = false, length = 11)
+	private int pessoaId;
+	
+	@Id
 	@Column(name = "loja_id", nullable = false, length = 11)
 	private int lojaId;
 	
-	@Column(name = "usuario_executante_id", nullable = false, length = 11)
-	private int usuarioExecutanteId;
+	@Column(name = "pontos", nullable = true)
+	private Long pontos;
 	
-	@Column(name = "inicio_vigencia", nullable = true)
-	private Date inicioVigencia;
+	@Column(name = "valor", nullable = true)
+	private Double valor;
 	
-	@Column(name = "fim_vigencia", nullable = true)
-	private Date fimVigencia;
+	@Column(name = "descricao", nullable = true)
+	private String descricao;
 	
-	@Column(name = "status", nullable = true, length = 2)
-	private Integer status;
-	
+	@Column(name = "data", nullable = true)
+	private Date data;
+
 	@Column(name = "criado", nullable = true)
 	private Date criado;
 	
@@ -42,7 +48,7 @@ public class ContratoLoja implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return id;
+		return id+pessoaId+lojaId;
 	}
 
 	@Override
@@ -56,16 +62,20 @@ public class ContratoLoja implements Serializable{
 		return "";
 	}
 
-	
-	/**
-	 * GETS e SETS
-	 * */
 	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getPessoaId() {
+		return pessoaId;
+	}
+
+	public void setPessoaId(int pessoaId) {
+		this.pessoaId = pessoaId;
 	}
 
 	public int getLojaId() {
@@ -76,28 +86,36 @@ public class ContratoLoja implements Serializable{
 		this.lojaId = lojaId;
 	}
 
-	public Date getInicioVigencia() {
-		return inicioVigencia;
+	public Long getPontos() {
+		return pontos;
 	}
 
-	public void setInicioVigencia(Date inicioVigencia) {
-		this.inicioVigencia = inicioVigencia;
+	public void setPontos(Long pontos) {
+		this.pontos = pontos;
 	}
 
-	public Date getFimVigencia() {
-		return fimVigencia;
+	public Double getValor() {
+		return valor;
 	}
 
-	public void setFimVigencia(Date fimVigencia) {
-		this.fimVigencia = fimVigencia;
+	public void setValor(Double valor) {
+		this.valor = valor;
 	}
 
-	public Integer getStatus() {
-		return status;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setStatus(Integer status) {
-		this.status = status;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
 	}
 
 	public Date getCriado() {
@@ -115,13 +133,4 @@ public class ContratoLoja implements Serializable{
 	public void setModificado(Date modificado) {
 		this.modificado = modificado;
 	}
-
-	public int getUsuarioExecutanteId() {
-		return usuarioExecutanteId;
-	}
-
-	public void setUsuarioExecutanteId(int usuarioExecutanteId) {
-		this.usuarioExecutanteId = usuarioExecutanteId;
-	}
-	
 }

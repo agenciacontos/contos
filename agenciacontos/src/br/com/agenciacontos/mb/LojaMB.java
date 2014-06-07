@@ -10,10 +10,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.agenciacontos.enums.DocumentoTipoEnum;
+import br.com.agenciacontos.enums.UsuarioIdentificacaoTipoEnum;
 import br.com.agenciacontos.facade.LojaFacade;
-import br.com.agenciacontos.facade.PontosGeradosFacade;
 import br.com.agenciacontos.model.Loja;
-import br.com.agenciacontos.model.PontosGerados;
+import br.com.agenciacontos.model.Pontos;
 import br.com.agenciacontos.model.Usuario;
 import br.com.agenciacontos.seguranca.ControleAcesso;
 
@@ -25,24 +25,22 @@ public class LojaMB extends AbstractMB implements Serializable {
 	@Inject private ControleAcesso controleAcesso;
 	
 	@Inject private LojaFacade lojaFacade;
-	@Inject private PontosGeradosFacade pontosGeradosFacade;
+//	@Inject private PontosFacade pontosFacade;
 	
 	private List<Loja> lojas;
 	@Inject private Usuario usuario;
-	@Inject private PontosGerados pontosGerados;
+	@Inject private Pontos pontosGerados;
 	
 	@PostConstruct
 	protected void init2() {  
 	    
-//		initConversation();
-		
-//		if(usuario == null){
-//			usuario = new Usuario();
-//			usuario.setIdentificacaoTipo(UsuarioIdentificacaoTipoEnum.EMAIL.getCodigo());
-//		}
+		if(usuario == null){
+			usuario = new Usuario();
+			usuario.setIdentificacaoTipo(UsuarioIdentificacaoTipoEnum.EMAIL.getCodigo());
+		}
 
 		if(pontosGerados == null){
-			pontosGerados = new PontosGerados();
+			pontosGerados = new Pontos();
 			pontosGerados.setPontos(1L);
 		}
 		
@@ -52,8 +50,8 @@ public class LojaMB extends AbstractMB implements Serializable {
 
 		try {
 			
-			if(lojas == null)
-				lojas = lojaFacade.listarLojasPorUsuario(controleAcesso.getUsuarioAtual().getId());
+//			if(lojas == null)
+//				lojas = lojaFacade.listarLojasPorUsuario(controleAcesso.getUsuarioAtual().getId());
 			
 			return lojas;
 			
@@ -79,26 +77,26 @@ public class LojaMB extends AbstractMB implements Serializable {
 			
 	}
 	
-	public void fornecerPontos(){
+	public String fornecerPontos(){
 		
 		try {
 			
-			usuario.setNome("TESTE DE NOME");
+//			usuario.setNome("TESTE DE NOME");
 			
 			pontosGerados.setLojaId(controleAcesso.getLojaAtual().getId());
 //			pontosGerados.setUsuarioExecutanteId(controleAcesso.getUsuario().getId());
 			
 			//buscar id do usuario para mandar 
-			pontosGerados.setUsuarioId(1);
+//			pontosGerados.setUsuarioId(1);
 			
-			pontosGeradosFacade.incluirPontos(pontosGerados);
+//			pontosGeradosFacade.incluirPontos(pontosGerados);
 			
 		} catch (Exception e) {
 			displayErrorMessageToUser("Falha ao incluir pontos.", e.getLocalizedMessage());
 			e.printStackTrace();
 		}
-		
-//		endConversation();
+
+		return "";
 		
 	}
 	
@@ -107,21 +105,17 @@ public class LojaMB extends AbstractMB implements Serializable {
 	 * SETS e GETS
 	 */
 	public Usuario getUsuario() {
-		if(usuario == null){
-			usuario = new Usuario();
-//			usuario.setIdentificacaoTipo(UsuarioIdentificacaoTipoEnum.EMAIL.getCodigo());
-		}
 		return usuario;
 	}
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 
-	public PontosGerados getPontosGerados() {
+	public Pontos getPontosGerados() {
 		return pontosGerados;
 	}
 
-	public void setPontosGerados(PontosGerados pontosGerados) {
+	public void setPontosGerados(Pontos pontosGerados) {
 		this.pontosGerados = pontosGerados;
 	} 
 

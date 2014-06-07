@@ -2,13 +2,10 @@ package br.com.agenciacontos.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -23,40 +20,30 @@ import br.com.agenciacontos.enums.UsuarioTipoEnum;
 	@NamedQuery(name = "Usuario.buscarUsuarioPorEmail", query = "SELECT u FROM Usuario u WHERE u.email = :email "),
 	@NamedQuery(name = "Usuario.buscarUsuarioPorDocumento", query = "SELECT u FROM Usuario u WHERE u.documento = :documento ")
 })
-public class Usuario implements Serializable {
+public class Usuario extends Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public static final String BUSCAR_POR_EMAIL = "Usuario.buscarUsuarioPorEmail";
 	public static final String BUSCAR_POR_DOCUMENTO = "Usuario.buscarUsuarioPorDocumento";
-	
+
 	@Transient
 	private Integer identificacaoTipo;
+	@Transient
+	private Collection<Endereco> enderecos;
+	@Transient
+	private Collection<Email> emails;
+	@Transient
+	private Collection<Telefone> telefones;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	@Column(name = "pessoa_id", nullable = false, length = 11)
+	private int pessoaId;
 
-	@Column(name = "nome", nullable = true, length = 100)
-	private String nome;
-	
-	@Column(name = "documento", nullable = false, unique = true, length = 15)
-	private String documento;
-	
-	@Enumerated(EnumType.STRING)
-	@Column(name = "documento_tipo", nullable = false, length = 1)
-	private Integer documentoTipo;
-	
-	@Column(name = "email", nullable = true, unique = true, length = 100)
-	private String email;
-	
 	@Column(name = "senha", nullable = true, length = 100)
 	private String senha;
 	
-	@Column(name = "status", nullable = true, length = 2)
-	private Integer status;
-	
-	@Column(name = "tipo", nullable = true, length = 2)
-	private Integer tipo;
+	@Column(name = "usuario_tipo", nullable = true, length = 2)
+	private Integer usuarioTipo;
 	
 	@Column(name = "criado", nullable = true)
 	private Date criado;
@@ -65,63 +52,82 @@ public class Usuario implements Serializable {
 	private Date modificado;
 
 	public boolean isAdmin() {
-		return UsuarioTipoEnum.ADMIN.equals(tipo);
+		return UsuarioTipoEnum.ADMIN.equals(usuarioTipo);
 	}
 
 	public boolean isVendedor() {
-		return UsuarioTipoEnum.VENDEDOR.equals(tipo);
+		return UsuarioTipoEnum.VENDEDOR.equals(usuarioTipo);
 	}
 
 	@Override
 	public int hashCode() {
-		return getId();
+		return getPessoaId();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Usuario) {
 			Usuario usuario = (Usuario) obj;
-			return usuario.getId() == id;
+			return usuario.getPessoaId() == pessoaId;
 		}
 
 		return false;
 	}
-	
-	
-	/**
-	 * GETS e SETS
-	 * */
 
-	public int getId() {
-		return id;
+	public Integer getIdentificacaoTipo() {
+		return identificacaoTipo;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setIdentificacaoTipo(Integer identificacaoTipo) {
+		this.identificacaoTipo = identificacaoTipo;
 	}
 
-	public String getNome() {
-		return nome;
+	public Collection<Endereco> getEnderecos() {
+		return enderecos;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setEnderecos(Collection<Endereco> enderecos) {
+		this.enderecos = enderecos;
 	}
 
-	public String getDocumento() {
-		return documento;
+	public Collection<Email> getEmails() {
+		return emails;
 	}
 
-	public void setDocumento(String documento) {
-		this.documento = documento;
+	public void setEmails(Collection<Email> emails) {
+		this.emails = emails;
 	}
 
-	public String getEmail() {
-		return email;
+	public Collection<Telefone> getTelefones() {
+		return telefones;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setTelefones(Collection<Telefone> telefones) {
+		this.telefones = telefones;
+	}
+
+	public int getPessoaId() {
+		return pessoaId;
+	}
+
+	public void setPessoaId(int pessoaId) {
+		this.pessoaId = pessoaId;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public Integer getUsuarioTipo() {
+		return usuarioTipo;
+	}
+
+	public void setUsuarioTipo(Integer usuarioTipo) {
+		this.usuarioTipo = usuarioTipo;
 	}
 
 	public Date getCriado() {
@@ -140,44 +146,4 @@ public class Usuario implements Serializable {
 		this.modificado = modificado;
 	}
 
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
-	public Integer getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(Integer tipo) {
-		this.tipo = tipo;
-	}
-
-	public Integer getDocumentoTipo() {
-		return documentoTipo;
-	}
-
-	public void setDocumentoTipo(Integer documentoTipo) {
-		this.documentoTipo = documentoTipo;
-	}
-
-	public Integer getIdentificacaoTipo() {
-		return identificacaoTipo;
-	}
-
-	public void setIdentificacaoTipo(Integer identificacaoTipo) {
-		this.identificacaoTipo = identificacaoTipo;
-	}
-	
 }
