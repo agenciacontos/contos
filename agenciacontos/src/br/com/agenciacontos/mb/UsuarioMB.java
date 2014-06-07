@@ -21,7 +21,7 @@ public class UsuarioMB extends AbstractMB implements Serializable {
 
 	private Usuario usuario;
 
-	public void cadastrarUsuario(){
+	public String cadastrarUsuario(){
 
 		try {
 			
@@ -34,6 +34,8 @@ public class UsuarioMB extends AbstractMB implements Serializable {
 			displayErrorMessageToUser("Falha ao criar usuário.", e.getLocalizedMessage());
 			e.printStackTrace();
 		}
+		
+		return "";
 
 	}
 	

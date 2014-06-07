@@ -48,7 +48,9 @@
     						</h:column>
 							<h:column>
     							<f:facet name="header"></f:facet>
-    							<h:commandButton styleClass="btn btn-default" actionListener="#{loginMB.setLoja(loja)}" action="#{loginMB.gravarDadosLogin()}" value="Escolher" />
+    							<h:commandButton styleClass="btn btn-default" action="#{loginMB.gravarDadosLogin()}" value="Escolher">
+    								<f:setPropertyActionListener target="#{loginMB.loja}" value="#{loja}" />
+    							</h:commandButton>
     						</h:column>
 						</h:dataTable>
 						

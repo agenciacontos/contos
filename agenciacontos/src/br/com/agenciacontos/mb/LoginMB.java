@@ -89,6 +89,8 @@ public class LoginMB extends AbstractMB implements Serializable {
 	
 	public String gravarDadosLogin(){
 		
+//		Loja loja = (Loja) httpServletRequest.getParameter("loja");
+		
 		if(getUsuario() != null){
 			controleAcesso.carregaAcessosPreDefinidosUsuario(getUsuario());
 			controleAcesso.gravaUsuarioLogado(getUsuario());

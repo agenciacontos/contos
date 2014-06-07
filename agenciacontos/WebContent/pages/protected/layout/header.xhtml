@@ -24,7 +24,7 @@
 			</ul>
 		</h:form>
 		
-		<h:form role="form" styleClass="navbar-form navbar-right" rendered="#{!controleAcesso.isUsuarioLogado()}">
+		<h:form role="form" styleClass="navbar-form navbar-right" rendered="#{!controleAcesso.usuarioLogado}">
 		<!-- Deslogado -->
 			<div class="form-group">
 				<h:inputText value="#{loginMB.emailDocumento}" id="emailDocumento" pt:placeholder="E-Mail ou CPF/CNPJ" styleClass="form-control" />
