@@ -14,13 +14,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "loja")
-@NamedQueries({
-	@NamedQuery(name = "Loja.buscarLojaPorDocumento", query = "SELECT l FROM Loja l WHERE l.documento = :documento ")
-})
+//@NamedQueries({
+//	@NamedQuery(name = "Loja.buscarLojaPorDocumento", query = "SELECT l FROM Loja l WHERE l.documento = :documento ")
+//})
 public class Loja implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	public static final String BUSCAR_LOJA_POR_DOCUMENTO = "Loja.buscarLojaPorDocumento";
+//	public static final String BUSCAR_LOJA_POR_DOCUMENTO = "Loja.buscarLojaPorDocumento";
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

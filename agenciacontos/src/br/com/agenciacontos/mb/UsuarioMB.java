@@ -2,14 +2,13 @@ package br.com.agenciacontos.mb;
 
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.agenciacontos.enums.DocumentoTipoEnum;
-import br.com.agenciacontos.enums.UsuarioTipoEnum;
 import br.com.agenciacontos.facade.UsuarioFacade;
-import br.com.agenciacontos.model.Usuario;
 
 @RequestScoped
 @Named
@@ -19,15 +18,37 @@ public class UsuarioMB extends AbstractMB implements Serializable {
 
 	@Inject private UsuarioFacade usuarioFacade;
 
-	private Usuario usuario;
+	private UsuarioForm usuarioForm;
 
+	@PostConstruct
+	protected void init() {  
+		
+		if(usuarioForm == null){
+			usuarioForm = new UsuarioForm();
+			usuarioForm.setDocumentoTipo(DocumentoTipoEnum.CPF.getCodigo());
+		}
+		
+	} 
+	
+	public String getTesteIniciaTables(){
+		try {
+			
+			usuarioFacade.listAll();
+			
+			displayInfoMessageToUser("DB criado com sucesso.");
+		} catch (Exception e) {
+			displayErrorMessageToUser("Falha ao criar BD.", e.getLocalizedMessage());
+			e.printStackTrace();
+		}
+		
+		return "";
+	}
+	
 	public String cadastrarUsuario(){
 
 		try {
 			
-			getUsuario().setUsuarioTipo(UsuarioTipoEnum.CLIENTE.getCodigo());
-			
-			usuarioFacade.cadastrarUsuario(getUsuario());
+//			usuarioFacade.cadastrarUsuario(usuario);
 			
 			displayInfoMessageToUser("Usuário criado com sucesso.");
 		} catch (Exception e) {
@@ -50,17 +71,14 @@ public class UsuarioMB extends AbstractMB implements Serializable {
 		
 		return labelValue;
 			
+	}
+
+	public UsuarioForm getUsuarioForm() {
+		return usuarioForm;
+	}
+
+	public void setUsuarioForm(UsuarioForm usuarioForm) {
+		this.usuarioForm = usuarioForm;
 	} 
-
-	public Usuario getUsuario() {
-		if(usuario == null){
-			usuario = new Usuario();
-		}
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
 
 }

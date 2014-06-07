@@ -16,18 +16,20 @@ import br.com.agenciacontos.enums.UsuarioTipoEnum;
 
 @Entity
 @Table(name = "usuario")
-@NamedQueries({
-	@NamedQuery(name = "Usuario.buscarUsuarioPorEmail", query = "SELECT u FROM Usuario u WHERE u.email = :email "),
-	@NamedQuery(name = "Usuario.buscarUsuarioPorDocumento", query = "SELECT u FROM Usuario u WHERE u.documento = :documento ")
-})
-public class Usuario extends Pessoa implements Serializable {
+//@NamedQueries({
+//	@NamedQuery(name = "Usuario.buscarUsuarioPorEmail", query = "SELECT u FROM Usuario u WHERE u.email = :email "),
+//	@NamedQuery(name = "Usuario.buscarUsuarioPorDocumento", query = "SELECT u FROM Usuario u WHERE u.documento = :documento ")
+//})
+public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	public static final String BUSCAR_POR_EMAIL = "Usuario.buscarUsuarioPorEmail";
-	public static final String BUSCAR_POR_DOCUMENTO = "Usuario.buscarUsuarioPorDocumento";
+//	public static final String BUSCAR_POR_EMAIL = "Usuario.buscarUsuarioPorEmail";
+//	public static final String BUSCAR_POR_DOCUMENTO = "Usuario.buscarUsuarioPorDocumento";
 
 	@Transient
 	private Integer identificacaoTipo;
+	@Transient
+	private Pessoa pessoa;
 	@Transient
 	private Collection<Endereco> enderecos;
 	@Transient
@@ -144,6 +146,14 @@ public class Usuario extends Pessoa implements Serializable {
 
 	public void setModificado(Date modificado) {
 		this.modificado = modificado;
+	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 
 }

@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.agenciacontos.dao.UsuarioDAO;
+import br.com.agenciacontos.enums.UsuarioTipoEnum;
 import br.com.agenciacontos.model.Usuario;
 import br.com.agenciacontos.util.Utils;
 
@@ -25,15 +26,18 @@ public class UsuarioFacade extends AbstractFacade implements Serializable{
 		return usuario;
 	}	
 	
-	public void cadastrarUsuario(Usuario usuario) throws Exception {
+	public void cadastrarUsuario(Integer documentoTipo, Integer documento, String nome, String email, String senha) throws Exception {
+		
+		Usuario usuario = new Usuario();
+		usuario.setUsuarioTipo(UsuarioTipoEnum.CLIENTE.getCodigo());
 		
 		//TODO refazer apra buscar nos emails
 //		if(usuarioDAO.buscarUsuarioPorEmail(usuario.getEmail()) != null){
 //			throw new Exception("O e-mail utilizado ja consta na base de dados.");
 //		}
-		if(usuarioDAO.buscarUsuarioPorDocumento(usuario.getDocumento()) != null){
-			throw new Exception("O documento utilizado ja consta na base de dados.");
-		}
+//		if(usuarioDAO.buscarUsuarioPorDocumento(usuario.getDocumento()) != null){
+//			throw new Exception("O documento utilizado ja consta na base de dados.");
+//		}
 		
 		usuario.setCriado(Utils.getDataHoraAtual());
 		usuario.setModificado(Utils.getDataHoraAtual());
@@ -48,22 +52,22 @@ public class UsuarioFacade extends AbstractFacade implements Serializable{
 	public void updateUsuario(Usuario usuario) throws Exception {
 //		usuarioDAO.beginTransaction();
 		
-		Usuario persistedUsuario = usuarioDAO.find(usuario.getId());
+//		Usuario persistedUsuario = usuarioDAO.find(usuario.getId());
 		
 		usuario.setModificado(Utils.getDataHoraAtual());
 		
-		persistedUsuario.setCriado(usuario.getCriado());
-		persistedUsuario.setDocumento(usuario.getDocumento());
-		persistedUsuario.setDocumentoTipo(usuario.getDocumentoTipo());
+//		persistedUsuario.setCriado(usuario.getCriado());
+//		persistedUsuario.setDocumento(usuario.getDocumento());
+//		persistedUsuario.setDocumentoTipo(usuario.getDocumentoTipo());
 //		persistedUsuario.setEmail(usuario.getEmail());
 //		persistedUsuario.setId(usuario.getId());
-		persistedUsuario.setModificado(usuario.getModificado());
-		persistedUsuario.setNome(usuario.getNome());
+//		persistedUsuario.setModificado(usuario.getModificado());
+//		persistedUsuario.setNome(usuario.getNome());
 //		persistedUsuario.setPassword(usuario.getSenha());
 //		persistedUsuario.setTipo(usuario.getTipo());
 
 		usuarioDAO.beginTransaction();
-		usuarioDAO.update(persistedUsuario);
+//		usuarioDAO.update(persistedUsuario);
 		usuarioDAO.commit();
 //		usuarioDAO.commitAndCloseTransaction();
 	}
@@ -84,8 +88,8 @@ public class UsuarioFacade extends AbstractFacade implements Serializable{
 
 	public void deleteUsuario(Usuario usuario) throws Exception {
 //		usuarioDAO.beginTransaction();
-		Usuario persistedUsuario = usuarioDAO.findReferenceOnly(usuario.getId());
-		usuarioDAO.delete(persistedUsuario);
+//		Usuario persistedUsuario = usuarioDAO.findReferenceOnly(usuario.getId());
+//		usuarioDAO.delete(persistedUsuario);
 //		usuarioDAO.commitAndCloseTransaction();
 	}
 }

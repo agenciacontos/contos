@@ -34,9 +34,10 @@ public class LojaDAO extends GenericDAO<Loja> {
 		
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("documento", documento);
-		Loja loja = super.findOneResult(Loja.BUSCAR_LOJA_POR_DOCUMENTO, parameters);
+//		Loja loja = super.findOneResult(Loja.BUSCAR_LOJA_POR_DOCUMENTO, parameters);
 		
-		return loja;
+//		return loja;
+		return null;
 	}
 	
 	public void delete(Loja loja) {

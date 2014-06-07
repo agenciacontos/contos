@@ -18,18 +18,20 @@ public class UsuarioDAO extends GenericDAO<Usuario> {
 		
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("email", email);
-		Usuario usuario = super.findOneResult(Usuario.BUSCAR_POR_EMAIL, parameters);
+//		Usuario usuario = super.findOneResult(Usuario.BUSCAR_POR_EMAIL, parameters);
 		
-		return usuario;
+//		return usuario;
+		return null;
 	}
 	
 	public Usuario buscarUsuarioPorDocumento(String documento){
 		
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("documento", documento);
-		Usuario usuario = super.findOneResult(Usuario.BUSCAR_POR_DOCUMENTO, parameters);
+//		Usuario usuario = super.findOneResult(Usuario.BUSCAR_POR_DOCUMENTO, parameters);
 		
-		return usuario;
+//		return usuario;
+		return null;
 	}
 	
 	public Usuario verificarDadosLogin(String email, String documento, String senha) throws Exception {
@@ -68,6 +70,6 @@ public class UsuarioDAO extends GenericDAO<Usuario> {
 	}
 
 	public void delete(Usuario usuario) {
-        	super.delete(usuario.getId(), Usuario.class);
+//        	super.delete(usuario.getId(), Usuario.class);
 	}
 }

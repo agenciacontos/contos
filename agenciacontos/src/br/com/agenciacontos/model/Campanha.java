@@ -24,7 +24,7 @@ public class Campanha implements Serializable{
 	private String nome;
 
 	@Column(name = "validade_tipo", nullable = false, length = 2)
-	private String validadeTipo;
+	private Integer validadeTipo;
 
 	@Column(name = "validade", nullable = true)
 	private Date validade;
@@ -76,11 +76,11 @@ public class Campanha implements Serializable{
 		this.nome = nome;
 	}
 
-	public String getValidadeTipo() {
+	public Integer getValidadeTipo() {
 		return validadeTipo;
 	}
 
-	public void setValidadeTipo(String validadeTipo) {
+	public void setValidadeTipo(Integer validadeTipo) {
 		this.validadeTipo = validadeTipo;
 	}
 

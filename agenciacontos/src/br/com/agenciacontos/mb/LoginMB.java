@@ -61,7 +61,7 @@ public class LoginMB extends AbstractMB implements Serializable {
 			
 			if(getUsuario() != null){
 				
-				lojas = lojaFacade.listarLojasPorUsuario(usuario.getId());
+//				lojas = lojaFacade.listarLojasPorUsuario(usuario.getId());
 				
 				if(lojas.size() > 0){
 					
