@@ -5,7 +5,7 @@ public enum UsuarioTipoEnum {
 	
 	ADMIN(1, "Administrador"), 
 	CLIENTE(2, "Cliente"), 
-	VENDEDOR(3, "Vendedor");
+	LOJA(3, "Loja");
 	
 	private int codigo;
 	private String texto;

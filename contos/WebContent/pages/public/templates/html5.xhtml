@@ -1,0 +1,111 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+    <h:head>
+        <title><ui:insert name="title">Agência Contos</ui:insert></title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width" />
+
+		<h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+        </style>
+        <h:outputStylesheet library="css" name="bootstrap-theme.min.css" />
+        <h:outputStylesheet library="css" name="bootstrap-ads.css" />
+        <h:outputStylesheet library="css" name="overrides/override_primefaces.css" />
+        <h:outputStylesheet library="css" name="bootstrap-datetimepicker.min.css" />
+        <h:outputStylesheet library="css" name="main.css" />
+
+		<h:outputScript library="js" name="vendor/modernizr-2.6.2-respond-1.1.0.min.js" />
+
+    </h:head>
+    
+    <h:body> 
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+	    <div class="navbar navbar-default navbar-fixed-top">
+	      <div class="container">
+	      
+	      	<ui:insert name="header" >
+				<ui:include src="header.xhtml" />
+			</ui:insert>
+	        
+	         <p:growl id="growl" showDetail="true" sticky="true" />  
+	        
+	      </div>
+	    </div>
+
+	    <!-- Main jumbotron for a primary marketing message or call to action -->
+	    <ui:insert name="jumbotron"></ui:insert>
+
+    <div class="container">
+    
+		<ui:insert name="content"></ui:insert>
+    
+		<hr />
+
+		<footer>
+	      	<ui:insert name="header" >
+				<ui:include src="footer.xhtml" />
+			</ui:insert>
+		</footer>
+	</div> 
+    <!-- /container -->   
+
+
+<!-- Chamado a cada AJAX -->
+<p:ajaxStatus oncomplete="inicializadores();" />
+
+<!-- Chamado na inicializacao da pagina -->
+<script>
+/*<![CDATA[*/
+         
+	$( document ).ready(function() {
+		
+		inicializadores();
+		
+	});
+      	
+/*]]>*/
+</script>
+		
+    	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script>
+        /*<![CDATA[*/
+			window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')
+		/*]]>*/
+		</script>
+
+		<h:outputScript library="js" name="vendor/bootstrap.min.js" />
+
+		<h:outputScript library="js" name="plugins.js" />
+		<h:outputScript library="js" name="main.js" />
+		<h:outputScript library="js" name="bootstrap-ads.js" />
+		<h:outputScript library="js" name="bootstrap.touchspin.js" />
+		<h:outputScript library="js" name="transition.js" />
+		<h:outputScript library="js" name="collapse.js" />
+		<h:outputScript library="js" name="moment.min.js" />
+		<h:outputScript library="js" name="jquery.mask.min.js" />
+		<h:outputScript library="js" name="bootstrap-datetimepicker.js" />
+		<h:outputScript library="js" name="locales/bootstrap-datetimepicker.pt-BR.js" />
+		<h:outputScript library="js" name="utils.js" />
+
+        <script>
+        /*<![CDATA[*/
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src='//www.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+		/*]]>*/
+        </script>
+    </h:body>
+</html>

@@ -6,7 +6,29 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 
 public class Utils {
-
+	
+	public static Integer parseInt(String str){
+		if(str != null && !str.equalsIgnoreCase("")){
+			return Integer.parseInt(str);
+		}else{
+			return null;
+		}
+	}
+	
+	public static Integer cpfStrToInteger(String cpfStr){
+		if(cpfStr != null)
+			return parseInt(cpfStr.replaceAll(".", "").replaceAll("-", ""));
+		else
+			return null;
+	}
+	
+	public static Integer cnpjStrToInteger(String cnpjStr){
+		if(cnpjStr != null)
+			return parseInt(cnpjStr.replaceAll(".", "").replaceAll("-", "").replaceAll("/", ""));
+		else
+			return null;
+	}
+	
 	public static boolean isEmpty(String var){
 		if(var != null && !var.equalsIgnoreCase(""))
 			return false;

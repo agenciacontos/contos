@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import br.com.agenciacontos.dao.UsuarioDAO;
+import br.com.agenciacontos.enums.DocumentoTipoEnum;
 import br.com.agenciacontos.enums.UsuarioTipoEnum;
 import br.com.agenciacontos.model.Usuario;
 import br.com.agenciacontos.util.Utils;
@@ -14,6 +15,7 @@ public class UsuarioFacade extends AbstractFacade implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Inject private UsuarioDAO usuarioDAO;
+	@Inject private PessoaFacade pessoaFacade;
 	
 	public Usuario verificarDadosLogin(String email, String documento, String senha) throws Exception {
 		
@@ -22,10 +24,18 @@ public class UsuarioFacade extends AbstractFacade implements Serializable{
 		return usuario;
 	}	
 	
-	public void cadastrarUsuario(Integer documentoTipo, Integer documento, String nome, String email, String senha) throws Exception {
+	public void cadastrarUsuario(DocumentoTipoEnum documentoTipo, Integer documento, String nome, String email, String senha) throws Exception {
 		
 		Usuario usuario = new Usuario();
 		usuario.setUsuarioTipo(UsuarioTipoEnum.CLIENTE.getCodigo());
+		
+		pessoaFacade.cadastrarPessoa(documentoTipo, documento, nome, email);
+		
+//		Pessoa pessoa = new Pessoa();
+//		pessoa.setCriado(criado);
+//		pessoa.setDataNascimento(dataNascimento);
+//		pessoa.set
+		
 		
 		//TODO refazer apra buscar nos emails
 //		if(usuarioDAO.buscarUsuarioPorEmail(usuario.getEmail()) != null){
@@ -35,13 +45,16 @@ public class UsuarioFacade extends AbstractFacade implements Serializable{
 //			throw new Exception("O documento utilizado ja consta na base de dados.");
 //		}
 		
-		usuario.setCriado(Utils.getDataHoraAtual());
-		usuario.setModificado(Utils.getDataHoraAtual());
-		usuario.setSenha(Utils.convertStringToMd5(usuario.getSenha()));
-		
-		usuarioDAO.beginTransaction();
-		usuarioDAO.save(usuario);
-		usuarioDAO.commit();
+//		usuario.setSenha(senha);
+//		usuario.set
+//		
+//		usuario.setCriado(Utils.getDataHoraAtual());
+//		usuario.setModificado(Utils.getDataHoraAtual());
+//		usuario.setSenha(Utils.convertStringToMd5(usuario.getSenha()));
+//		
+//		usuarioDAO.beginTransaction();
+//		usuarioDAO.save(usuario);
+//		usuarioDAO.commit();
 		
 	}
 

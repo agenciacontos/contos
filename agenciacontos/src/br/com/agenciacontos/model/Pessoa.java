@@ -2,6 +2,7 @@ package br.com.agenciacontos.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -20,6 +22,9 @@ public class Pessoa implements Serializable {
 
 	@Transient
 	private Integer identificacaoTipo;
+	
+	@OneToMany(mappedBy="email")
+	private Collection<Email> emails;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -144,6 +149,14 @@ public class Pessoa implements Serializable {
 
 	public void setModificado(Date modificado) {
 		this.modificado = modificado;
+	}
+
+	public Collection<Email> getEmails() {
+		return emails;
+	}
+
+	public void setEmails(Collection<Email> emails) {
+		this.emails = emails;
 	}
 
 }

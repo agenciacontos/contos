@@ -1,12 +1,53 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" >
-<h:body>
-	<ui:composition template="/pages/protected/templates/master.xhtml">
-		<ui:define name="divMain">
-			#{bundle.welcomeMessage} :<br/>
-			<h:graphicImage library="images" name="logoReal.png" />
-		</ui:define>	
-	</ui:composition>
-</h:body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/pages/protected/templates/html5.xhtml">
+
+<ui:define name="jumbotron"> 
+	
+	<div class="jumbotron">
+		<div class="container">
+			
+			<ui:remove>
+			<h:form>
+				<h:commandButton action="#{usuarioMB.getTesteIniciaTables()}" value="Testar BD1" />
+			</h:form>
+			</ui:remove>
+			
+		<h1>Hello, world!</h1>
+		<p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+		<p><a class="btn btn-primary btn-lg">Learn more ;</a></p>
+    
+		</div>
+  </div>
+  
+</ui:define>  
+
+<ui:define name="content"> 
+
+	<!-- Example row of columns -->
+      <div class="row">
+        <div class="col-lg-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#">View details ;</a></p>
+        </div>
+        <div class="col-lg-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#">View details ;</a></p>
+       </div>
+        <div class="col-lg-4">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn btn-default" href="#">View details ;</a></p>
+        </div>
+      </div>
+	
+</ui:define>
+</ui:composition>
+
 </html>

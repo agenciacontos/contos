@@ -4,14 +4,17 @@ package br.com.agenciacontos.mb;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import br.com.agenciacontos.enums.DocumentoTipoEnum;
 import br.com.agenciacontos.facade.UsuarioFacade;
+import br.com.agenciacontos.util.Utils;
 
-
+@RequestScoped
+@Named
 public class UsuarioMB extends AbstractMB implements Serializable {
-//	public static final String INJECTION_NAME = "#{usuarioMB}";
 	private static final long serialVersionUID = 1L;
 
 	@Inject private UsuarioFacade usuarioFacade;
@@ -21,13 +24,9 @@ public class UsuarioMB extends AbstractMB implements Serializable {
 	@PostConstruct
 	protected void init() {  
 		
-//		initConversation();
-		
 		if(usuarioForm == null){
-			System.out.println("INICIO if(usuarioForm == null){");
 			usuarioForm = new UsuarioForm();
 			usuarioForm.setDocumentoTipo(DocumentoTipoEnum.CPF.getCodigo());
-			System.out.println("FIM if(usuarioForm == null){");
 		}
 		
 	} 
@@ -50,9 +49,21 @@ public class UsuarioMB extends AbstractMB implements Serializable {
 
 		try {
 			
-//			usuarioFacade.cadastrarUsuario(usuario);
+			Integer documento = null;
+			if(usuarioForm.getDocumentoTipo().equals(DocumentoTipoEnum.CPF.getCodigo())){
+				documento = Utils.cpfStrToInteger(usuarioForm.getCpf());
+			}else{
+				documento = Utils.cnpjStrToInteger(usuarioForm.getCnpj());
+			}
+			
+			usuarioFacade.cadastrarUsuario(DocumentoTipoEnum.getDocumentoTipoFromCodigo(usuarioForm.getDocumentoTipo())
+											, documento
+											, usuarioForm.getNome()
+											, usuarioForm.getEmail()
+											, usuarioForm.getSenha());
 			
 			displayInfoMessageToUser("Usuário criado com sucesso.");
+			
 		} catch (Exception e) {
 			displayErrorMessageToUser("Falha ao criar usuário.", e.getLocalizedMessage());
 			e.printStackTrace();

@@ -36,7 +36,7 @@ public class LojaMB extends AbstractMB implements Serializable {
 	    
 		if(usuario == null){
 			usuario = new Usuario();
-			usuario.setIdentificacaoTipo(UsuarioIdentificacaoTipoEnum.EMAIL.getCodigo());
+//			usuario.setIdentificacaoTipo(UsuarioIdentificacaoTipoEnum.EMAIL.getCodigo());
 		}
 
 		if(pontosGerados == null){

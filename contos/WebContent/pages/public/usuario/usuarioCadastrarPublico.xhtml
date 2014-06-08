@@ -1,0 +1,83 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/pages/public/templates/html5.xhtml">
+<ui:define name="content"> 
+
+	<br />
+	
+	<div class="row">
+		<div class="col-md-6"></div>
+		<div class="col-md-6">
+
+			<div class="panel panel-default">
+				<div class="panel-body">
+		
+					<h:form role="form" styleClass="form-horizontal">
+								
+						<div class="form-group">
+							<label for="documento" class="col-md-2 control-label">
+								Documento
+							</label>
+							<div class="col-sm-6">
+								<h:panelGroup id="painelDocumento" styleClass="input-group" layout="block">
+									<div class="input-group-btn">
+										<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+											<h:outputText value="CPF" rendered="#{usuarioMB.documentoTipoCpf}" />
+											<h:outputText value="CNPJ" rendered="#{usuarioMB.documentoTipoCnpj}" />
+											<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu">
+											<li><p:commandLink value="CPF" action="#{usuarioMB.setDocumentoTipoCpf()}" immediate="true" update="painelDocumento" /></li>
+											<li><p:commandLink value="CNPJ" action="#{usuarioMB.setDocumentoTipoCnpj()}" immediate="true" update="painelDocumento" /></li>
+										</ul>
+									</div>
+									<!-- /btn-group -->
+									<h:inputText value="#{usuarioMB.documentoTipo}" />
+									<h:inputText styleClass="form-control cpf" rendered="#{usuarioMB.documentoTipoCpf}" pt:required="true" value="#{usuarioMB.documento}" id="documentoCpf" required="true" />
+									<h:inputText styleClass="form-control cnpj" rendered="#{usuarioMB.documentoTipoCnpj}" pt:required="true" value="#{usuarioMB.documento}" id="documentoCnpj" required="true" />
+								</h:panelGroup>
+								<!-- /input-group -->
+							</div>
+							<!-- /.col-sm-6 -->
+						</div>
+					
+						<div class="form-group">
+							<label for="email" class="col-md-2 control-label">E-mail</label>
+							<div class="col-sm-10">
+								<h:inputText pt:type="email" value="#{usuarioMB.email}" id="email" pt:placeholder="E-Mail" styleClass="form-control" />
+							</div>
+						</div>
+					
+						<div class="form-group">
+							<label for="nome" class="col-md-2 control-label">Nome</label>
+							<div class="col-sm-10">
+								<h:inputText pt:required="true" value="#{usuarioMB.nome}" id="nome" pt:placeholder="Digite seu nome" styleClass="form-control" />
+							</div>
+						</div>
+					
+						<div class="form-group">
+							<label for="senha" class="col-md-2 control-label">Senha</label>
+							<div class="col-sm-10">
+								<h:inputSecret pt:required="true" value="#{usuarioMB.senha}" id="senha" pt:placeholder="Escolha uma senha" styleClass="form-control" />
+							</div>
+						</div>
+					
+						<h:commandButton styleClass="btn btn-default" id="cadastrarUsuario" action="#{usuarioMB.cadastrarUsuario()}" value="Cadastrar" />
+						
+					</h:form>
+		
+				</div>
+			</div>
+	
+		</div>
+	</div>
+	
+	</ui:define>
+</ui:composition>
+
+</html>

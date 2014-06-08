@@ -2,13 +2,11 @@ package br.com.agenciacontos.model;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import br.com.agenciacontos.enums.UsuarioTipoEnum;
 
@@ -24,16 +22,16 @@ public class Usuario implements Serializable {
 //	public static final String BUSCAR_POR_EMAIL = "Usuario.buscarUsuarioPorEmail";
 //	public static final String BUSCAR_POR_DOCUMENTO = "Usuario.buscarUsuarioPorDocumento";
 
-	@Transient
-	private Integer identificacaoTipo;
-	@Transient
-	private Pessoa pessoa;
-	@Transient
-	private Collection<Endereco> enderecos;
-	@Transient
-	private Collection<Email> emails;
-	@Transient
-	private Collection<Telefone> telefones;
+//	@Transient
+//	private Integer identificacaoTipo;
+//	@Transient
+//	private Pessoa pessoa;
+//	@Transient
+//	private Collection<Endereco> enderecos;
+//	@Transient
+//	private Collection<Email> emails;
+//	@Transient
+//	private Collection<Telefone> telefones;
 	
 	@Id
 	@Column(name = "pessoa_id", nullable = false, length = 11)
@@ -55,10 +53,14 @@ public class Usuario implements Serializable {
 		return UsuarioTipoEnum.ADMIN.equals(usuarioTipo);
 	}
 
-	public boolean isVendedor() {
-		return UsuarioTipoEnum.VENDEDOR.equals(usuarioTipo);
+	public boolean isCliente() {
+		return UsuarioTipoEnum.CLIENTE.equals(usuarioTipo);
 	}
 
+	public boolean isLoja() {
+		return UsuarioTipoEnum.LOJA.equals(usuarioTipo);
+	}
+	
 	@Override
 	public int hashCode() {
 		return pessoaId;
@@ -72,38 +74,6 @@ public class Usuario implements Serializable {
 		}
 
 		return false;
-	}
-
-	public Integer getIdentificacaoTipo() {
-		return identificacaoTipo;
-	}
-
-	public void setIdentificacaoTipo(Integer identificacaoTipo) {
-		this.identificacaoTipo = identificacaoTipo;
-	}
-
-	public Collection<Endereco> getEnderecos() {
-		return enderecos;
-	}
-
-	public void setEnderecos(Collection<Endereco> enderecos) {
-		this.enderecos = enderecos;
-	}
-
-	public Collection<Email> getEmails() {
-		return emails;
-	}
-
-	public void setEmails(Collection<Email> emails) {
-		this.emails = emails;
-	}
-
-	public Collection<Telefone> getTelefones() {
-		return telefones;
-	}
-
-	public void setTelefones(Collection<Telefone> telefones) {
-		this.telefones = telefones;
 	}
 
 	public int getPessoaId() {
@@ -144,14 +114,6 @@ public class Usuario implements Serializable {
 
 	public void setModificado(Date modificado) {
 		this.modificado = modificado;
-	}
-
-	public Pessoa getPessoa() {
-		return pessoa;
-	}
-
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
 	}
 
 }

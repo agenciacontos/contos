@@ -24,27 +24,52 @@
 								Documento
 							</label>
 							<div class="col-sm-6">
-								<h:panelGroup id="painelDocumento" styleClass="input-group" layout="block">
+								<h:panelGroup styleClass="input-group" layout="block">
 									<div class="input-group-btn">
 										<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-											<h:outputText value="CPF" rendered="#{usuarioMB.usuarioForm.documentoTipoCpf}" />
-											<h:outputText value="CNPJ" rendered="#{usuarioMB.usuarioForm.documentoTipoCnpj}" />
+											<span class="labelSelectCpfCnpj">CPF</span>
 											<span class="caret"></span>
 										</button>
 										<ul class="dropdown-menu">
-											<li><h:commandLink value="CPF" action="#{usuarioMB.usuarioForm.setDocumentoTipoCpf()}" immediate="true" /></li>
-											<li><h:commandLink value="CNPJ" action="#{usuarioMB.usuarioForm.setDocumentoTipoCnpj()}" immediate="true" /></li>
+											<li style="display:none;" class="opcaoMenuCpf"><a href="javascript:" onclick="alterarCpfCnpj(1);" >CPF</a></li>
+											<li style="display:block;" class="opcaoMenuCnpj"><a href="javascript:" onclick="alterarCpfCnpj(2);" >CNPJ</a></li>
 										</ul>
 									</div>
 									<!-- /btn-group -->
-									<h:inputText value="#{usuarioMB.usuarioForm.documentoTipo}" />
-									<h:inputText styleClass="form-control cpf" rendered="#{usuarioMB.usuarioForm.documentoTipoCpf}" pt:required="true" value="#{usuarioMB.usuarioForm.documento}" id="documentoCpf" required="true" />
-									<h:inputText styleClass="form-control cnpj" rendered="#{usuarioMB.usuarioForm.documentoTipoCnpj}" pt:required="true" value="#{usuarioMB.usuarioForm.documento}" id="documentoCnpj" required="true" />
+									<h:inputText value="#{usuarioMB.usuarioForm.documentoTipo}" styleClass="documentoTipo" />
+									<h:inputText styleClass="form-control cpf" style="display:block;" value="#{usuarioMB.usuarioForm.cpf}" id="cpf" />
+									<h:inputText styleClass="form-control cnpj" style="display:none;" value="#{usuarioMB.usuarioForm.cnpj}" id="cnpj" />
 								</h:panelGroup>
 								<!-- /input-group -->
 							</div>
 							<!-- /.col-sm-6 -->
 						</div>
+						
+						<script>
+						/*<![CDATA[*/
+						         
+							function alterarCpfCnpj(selecionar){
+
+								$(".documentoTipo").val(selecionar);
+
+								if(selecionar == 1){
+									$(".labelSelectCpfCnpj").html("CPF");
+									$(".cnpj").hide();
+									$(".cpf").show();
+									$(".opcaoMenuCpf").hide();
+									$(".opcaoMenuCnpj").show();
+								}else{
+									$(".labelSelectCpfCnpj").html("CNPJ");
+									$(".cpf").hide();
+									$(".cnpj").show();
+									$(".opcaoMenuCnpj").hide();
+									$(".opcaoMenuCpf").show();
+								}
+							}
+						      	
+						/*]]>*/
+						</script>
+		
 					
 						<div class="form-group">
 							<label for="email" class="col-md-2 control-label">E-mail</label>

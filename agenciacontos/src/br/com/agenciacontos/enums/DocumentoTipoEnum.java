@@ -20,6 +20,21 @@ public enum DocumentoTipoEnum {
 		return texto;
 	}
 	
+	public static DocumentoTipoEnum getDocumentoTipoFromCodigo(int codigo){
+		
+		for (DocumentoTipoEnum documentoTipo : values()) {
+
+			if (documentoTipo.getCodigo() == codigo) {
+
+				return documentoTipo;
+
+			}
+
+		}
+
+		return null;
+	}
+	
 	@Override
 	public String toString() {
 		return this.getTexto();

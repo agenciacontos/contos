@@ -10,8 +10,9 @@ public class UsuarioForm implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -8745326714505189940L;
-	private Integer documentoTipo;
-	private String documento;
+	private Integer documentoTipo = DocumentoTipoEnum.CPF.getCodigo();
+	private String cpf;
+	private String cnpj;
 	private String nome;
 	private String email;
 	private String senha;
@@ -35,12 +36,6 @@ public class UsuarioForm implements Serializable {
 //		return "";
 	}
 	
-	public String getDocumento() {
-		return documento;
-	}
-	public void setDocumento(String documento) {
-		this.documento = documento;
-	}
 	public String getNome() {
 		return nome;
 	}
@@ -66,6 +61,18 @@ public class UsuarioForm implements Serializable {
 	public void setDocumentoTipo(Integer documentoTipo) {
 		System.out.println("setDocumentoTipo()");
 		this.documentoTipo = documentoTipo;
+	}
+	public String getCnpj() {
+		return cnpj;
+	}
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 	
 }
