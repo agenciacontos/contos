@@ -23,14 +23,27 @@
 							<label for="documento" class="col-md-2 control-label">
 								Documento
 							</label>
-							<div class="col-sm-3">
-								<h:selectOneMenu styleClass="form-control" value="#{usuarioMB.usuarioForm.documentoTipo}">
-									<f:selectItems value="#{aplicacao.getDocumentoTiposLabelValue()}" var="opt" itemLabel="#{opt.label}" itemValue="#{opt.value}" />
-								</h:selectOneMenu>
+							<div class="col-sm-6">
+								<h:panelGroup id="painelDocumento" styleClass="input-group" layout="block">
+									<div class="input-group-btn">
+										<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+											<h:outputText value="CPF" rendered="#{usuarioMB.usuarioForm.documentoTipoCpf}" />
+											<h:outputText value="CNPJ" rendered="#{usuarioMB.usuarioForm.documentoTipoCnpj}" />
+											<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu">
+											<li><h:commandLink value="CPF" action="#{usuarioMB.usuarioForm.setDocumentoTipoCpf()}" immediate="true" /></li>
+											<li><h:commandLink value="CNPJ" action="#{usuarioMB.usuarioForm.setDocumentoTipoCnpj()}" immediate="true" /></li>
+										</ul>
+									</div>
+									<!-- /btn-group -->
+									<h:inputText value="#{usuarioMB.usuarioForm.documentoTipo}" />
+									<h:inputText styleClass="form-control cpf" rendered="#{usuarioMB.usuarioForm.documentoTipoCpf}" pt:required="true" value="#{usuarioMB.usuarioForm.documento}" id="documentoCpf" required="true" />
+									<h:inputText styleClass="form-control cnpj" rendered="#{usuarioMB.usuarioForm.documentoTipoCnpj}" pt:required="true" value="#{usuarioMB.usuarioForm.documento}" id="documentoCnpj" required="true" />
+								</h:panelGroup>
+								<!-- /input-group -->
 							</div>
-							<div class="col-sm-7">
-								<h:inputText pt:required="true" value="#{usuarioMB.usuarioForm.documento}" id="documento" pt:placeholder="CPF" styleClass="form-control" required="true" />
-							</div>
+							<!-- /.col-sm-6 -->
 						</div>
 					
 						<div class="form-group">

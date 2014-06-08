@@ -1,2 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14021509654600" configfile="/agenciacontos/WebContent/WEB-INF/faces-config.xml"/>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14021509654600" configfile="/agenciacontos/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="1138" id="pf14021675495430" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14021675495431 pf14021675495432 pf14021675495433 pf14021675495434 pf14021675495435 pf140216804196313" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/loja/listarMinhas.xhtml" x="338" y="562" id="pf14021675495437" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf14021675495431" path="/pages/loja/listarMinhas.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/loja/fornecerPontos.xhtml" x="338" y="946" id="pf14021675495438" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf14021675495432" path="/pages/loja/fornecerPontos.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/public/login.xhtml" x="338" y="1330" id="pf14021675495439" referenceLink="//@navigationRule.0/@navigationCase.3/@toViewId|" inlinks="pf14021675495433" path="/pages/public/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/public/accessDenied.xhtml" x="338" y="1714" id="pf140216754954310" referenceLink="//@navigationRule.0/@navigationCase.4/@toViewId|" inlinks="pf14021675495434" path="/pages/public/accessDenied.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/usuario/escolherPerfilLogin.xhtml" x="338" y="2098" id="pf140216754954311" referenceLink="//@navigationRule.0/@navigationCase.5/@toViewId|" inlinks="pf14021675495435" path="/pages/usuario/escolherPerfilLogin.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/usuario/usuarioCadastrarPublico.xhtml" id="pf140216804196414" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf140216804196313" path="/pages/usuario/usuarioCadastrarPublico.xhtml"/>
+  <links id="pf14021675495431" target="pf14021675495437" source="pf14021675495430" outcome="listarMinhasLojas"/>
+  <links id="pf14021675495432" target="pf14021675495438" source="pf14021675495430" outcome="fornecerPontos"/>
+  <links id="pf14021675495433" target="pf14021675495439" source="pf14021675495430" outcome="loginUsuario"/>
+  <links id="pf14021675495434" target="pf140216754954310" source="pf14021675495430" outcome="acessoNegado"/>
+  <links id="pf14021675495435" target="pf140216754954311" source="pf14021675495430" outcome="escolherPerfilLogin"/>
+  <links id="pf140216804196313" target="pf140216804196414" source="pf14021675495430" outcome="usuarioCadastrarPublico"/>
+</pageflow:Pageflow>

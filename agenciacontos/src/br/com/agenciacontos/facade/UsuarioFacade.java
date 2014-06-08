@@ -3,17 +3,13 @@ package br.com.agenciacontos.facade;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import br.com.agenciacontos.dao.UsuarioDAO;
 import br.com.agenciacontos.enums.UsuarioTipoEnum;
 import br.com.agenciacontos.model.Usuario;
 import br.com.agenciacontos.util.Utils;
 
-@RequestScoped
-@Named
 public class UsuarioFacade extends AbstractFacade implements Serializable{
 	private static final long serialVersionUID = 1L;
 	

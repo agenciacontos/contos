@@ -14,25 +14,25 @@ public class AbstractMB {
 		super();
 	}
 	
-	@Inject private Conversation conversation;
+//	@Inject private Conversation conversation;
 	
 	/**
      * Inicia o conversation scope.
      */
-    public void initConversation() {
-        if (!conversation.isTransient()) {
-            conversation.begin();
-        }
-    }
+//    public void initConversation() {
+//        if (!conversation.isTransient()) {
+//            conversation.begin();
+//        }
+//    }
     
     /**
      * Termina o conversation scoped.
      */
-    public void endConversation() {
-        if (conversation.isTransient()) {
-            conversation.end();
-        }
-    }
+//    public void endConversation() {
+//        if (conversation.isTransient()) {
+//            conversation.end();
+//        }
+//    }
 	
 //	public ControleAcesso getControleAcesso(){
 //		

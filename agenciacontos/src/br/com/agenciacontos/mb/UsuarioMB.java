@@ -1,19 +1,17 @@
 package br.com.agenciacontos.mb;
 
+
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import br.com.agenciacontos.enums.DocumentoTipoEnum;
 import br.com.agenciacontos.facade.UsuarioFacade;
 
-@RequestScoped
-@Named
+
 public class UsuarioMB extends AbstractMB implements Serializable {
-	public static final String INJECTION_NAME = "#{usuarioMB}";
+//	public static final String INJECTION_NAME = "#{usuarioMB}";
 	private static final long serialVersionUID = 1L;
 
 	@Inject private UsuarioFacade usuarioFacade;
@@ -23,9 +21,13 @@ public class UsuarioMB extends AbstractMB implements Serializable {
 	@PostConstruct
 	protected void init() {  
 		
+//		initConversation();
+		
 		if(usuarioForm == null){
+			System.out.println("INICIO if(usuarioForm == null){");
 			usuarioForm = new UsuarioForm();
 			usuarioForm.setDocumentoTipo(DocumentoTipoEnum.CPF.getCodigo());
+			System.out.println("FIM if(usuarioForm == null){");
 		}
 		
 	} 
