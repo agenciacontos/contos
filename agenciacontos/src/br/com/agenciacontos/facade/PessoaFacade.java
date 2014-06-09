@@ -11,7 +11,7 @@ import br.com.agenciacontos.model.Pessoa;
 import br.com.agenciacontos.model.Usuario;
 import br.com.agenciacontos.util.Utils;
 
-public class PessoaFacade extends AbstractFacade implements Serializable{
+public class PessoaFacade extends AbstractFacade implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Inject private PessoaDAO pessoaDAO;
