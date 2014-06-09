@@ -1,15 +1,12 @@
 package br.com.agenciacontos.facade;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
 
 import javax.inject.Inject;
 
 import br.com.agenciacontos.dao.PessoaDAO;
 import br.com.agenciacontos.enums.DocumentoTipoEnum;
 import br.com.agenciacontos.enums.UsuarioTipoEnum;
-import br.com.agenciacontos.model.Email;
 import br.com.agenciacontos.model.Pessoa;
 import br.com.agenciacontos.model.Usuario;
 import br.com.agenciacontos.util.Utils;
@@ -19,18 +16,20 @@ public class PessoaFacade extends AbstractFacade implements Serializable{
 	
 	@Inject private PessoaDAO pessoaDAO;
 	
-	public Pessoa cadastrarPessoa(DocumentoTipoEnum documentoTipo, Integer documento, String nome, String email) throws Exception {
+	public Pessoa cadastrarPessoa(DocumentoTipoEnum documentoTipo, String documento, String nome, String email) throws Exception {
 		
 		Usuario usuario = new Usuario();
 		usuario.setUsuarioTipo(UsuarioTipoEnum.CLIENTE.getCodigo());
 		
 		Pessoa pessoa = new Pessoa();
-		pessoa.setDocumento(String.valueOf(documento));
+		pessoa.setDocumento(documento);
 		pessoa.setDocumentoTipo(documentoTipo.getCodigo());
 		pessoa.setNome(nome);
 //		pessoa.setDataNascimento(dataNascimento);
-		Collection<Email> emails = new ArrayList<Email>();
-//		emails.add(new Email());
+		
+		// TODO gravar Email
+		
+		
 //		pessoa.setEmails(emails);
 		pessoa.setCriado(Utils.getDataHoraAtual());
 		pessoa.setModificado(Utils.getDataHoraAtual());

@@ -11,7 +11,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -23,7 +22,8 @@ public class Pessoa implements Serializable {
 	@Transient
 	private Integer identificacaoTipo;
 	
-	@OneToMany(mappedBy="email")
+//	@OneToMany(mappedBy="email")
+	@Transient
 	private Collection<Email> emails;
 	
 	@Id

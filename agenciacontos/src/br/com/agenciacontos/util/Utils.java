@@ -15,16 +15,16 @@ public class Utils {
 		}
 	}
 	
-	public static Integer cpfStrToInteger(String cpfStr){
+	public static String cpfSomenteNumeros(String cpfStr){
 		if(cpfStr != null)
-			return parseInt(cpfStr.replaceAll(".", "").replaceAll("-", ""));
+			return cpfStr.replaceAll("\\.", "").replaceAll("-", "");
 		else
 			return null;
 	}
 	
-	public static Integer cnpjStrToInteger(String cnpjStr){
+	public static String cnpjSomenteNumeros(String cnpjStr){
 		if(cnpjStr != null)
-			return parseInt(cnpjStr.replaceAll(".", "").replaceAll("-", "").replaceAll("/", ""));
+			return cnpjStr.replaceAll("\\.", "").replaceAll("-", "").replaceAll("/", "");
 		else
 			return null;
 	}

@@ -49,11 +49,11 @@ public class UsuarioMB extends AbstractMB implements Serializable {
 
 		try {
 			
-			Integer documento = null;
+			String documento = null;
 			if(usuarioForm.getDocumentoTipo().equals(DocumentoTipoEnum.CPF.getCodigo())){
-				documento = Utils.cpfStrToInteger(usuarioForm.getCpf());
+				documento = Utils.cpfSomenteNumeros(usuarioForm.getCpf());
 			}else{
-				documento = Utils.cnpjStrToInteger(usuarioForm.getCnpj());
+				documento = Utils.cnpjSomenteNumeros(usuarioForm.getCnpj());
 			}
 			
 			usuarioFacade.cadastrarUsuario(DocumentoTipoEnum.getDocumentoTipoFromCodigo(usuarioForm.getDocumentoTipo())

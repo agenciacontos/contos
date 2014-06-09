@@ -24,26 +24,22 @@ public class UsuarioFacade extends AbstractFacade implements Serializable{
 		return usuario;
 	}	
 	
-	public void cadastrarUsuario(DocumentoTipoEnum documentoTipo, Integer documento, String nome, String email, String senha) throws Exception {
+	public void cadastrarUsuario(DocumentoTipoEnum documentoTipo, String documento, String nome, String email, String senha) throws Exception {
 		
-		Usuario usuario = new Usuario();
-		usuario.setUsuarioTipo(UsuarioTipoEnum.CLIENTE.getCodigo());
-		
-		pessoaFacade.cadastrarPessoa(documentoTipo, documento, nome, email);
-		
-//		Pessoa pessoa = new Pessoa();
-//		pessoa.setCriado(criado);
-//		pessoa.setDataNascimento(dataNascimento);
-//		pessoa.set
-		
-		
-		//TODO refazer apra buscar nos emails
+		//TODO Verificar se email ou documento ja existe
 //		if(usuarioDAO.buscarUsuarioPorEmail(usuario.getEmail()) != null){
 //			throw new Exception("O e-mail utilizado ja consta na base de dados.");
 //		}
 //		if(usuarioDAO.buscarUsuarioPorDocumento(usuario.getDocumento()) != null){
 //			throw new Exception("O documento utilizado ja consta na base de dados.");
 //		}
+		
+		// Cadastrar Pessoa 
+		pessoaFacade.cadastrarPessoa(documentoTipo, documento, nome, email);
+		
+		//Cadastrar usuario
+		Usuario usuario = new Usuario();
+		usuario.setUsuarioTipo(UsuarioTipoEnum.CLIENTE.getCodigo());
 		
 //		usuario.setSenha(senha);
 //		usuario.set
