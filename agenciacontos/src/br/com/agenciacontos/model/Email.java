@@ -5,30 +5,27 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "email")
+@IdClass(EmailPK.class)
 public class Email implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "email_id", nullable = false, length = 11)
 	private int id;
 	
 	@Id
-	@Column(name = "pessoa_id", nullable = false, length = 11)
 	private int pessoaId;
 
 	@Column(name = "email", nullable = true, length = 50)
 	private String email;
 
 	@Column(name = "indicador_preferencial", nullable = true)
-	private Boolean indicador_preferencial;
+	private Boolean indicadorEmailPreferencial;
 	
 	@Column(name = "data_inicio", nullable = true)
 	private Date data_inicio;
@@ -49,7 +46,11 @@ public class Email implements Serializable{
 
 	@Override
 	public boolean equals(Object obj) {
-
+		if (obj instanceof Email) {
+			Email email = (Email) obj;
+			return email.id == this.id && email.pessoaId == this.pessoaId;
+        }
+ 
 		return false;
 	}
 	
@@ -58,36 +59,12 @@ public class Email implements Serializable{
 		return "";
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getPessoaId() {
-		return pessoaId;
-	}
-
-	public void setPessoaId(int pessoaId) {
-		this.pessoaId = pessoaId;
-	}
-
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public Boolean getIndicador_preferencial() {
-		return indicador_preferencial;
-	}
-
-	public void setIndicador_preferencial(Boolean indicador_preferencial) {
-		this.indicador_preferencial = indicador_preferencial;
 	}
 
 	public Date getData_inicio() {
@@ -120,6 +97,30 @@ public class Email implements Serializable{
 
 	public void setModificado(Date modificado) {
 		this.modificado = modificado;
+	}
+
+	public Boolean getIndicadorEmailPreferencial() {
+		return indicadorEmailPreferencial;
+	}
+
+	public void setIndicadorEmailPreferencial(Boolean indicadorEmailPreferencial) {
+		this.indicadorEmailPreferencial = indicadorEmailPreferencial;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getPessoaId() {
+		return pessoaId;
+	}
+
+	public void setPessoaId(int pessoaId) {
+		this.pessoaId = pessoaId;
 	}
 
 }

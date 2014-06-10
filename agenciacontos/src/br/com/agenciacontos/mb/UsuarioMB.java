@@ -9,7 +9,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.agenciacontos.enums.DocumentoTipoEnum;
+import br.com.agenciacontos.facade.EmailFacade;
 import br.com.agenciacontos.facade.UsuarioFacade;
+import br.com.agenciacontos.model.Email;
 import br.com.agenciacontos.util.Utils;
 
 @RequestScoped
@@ -18,6 +20,7 @@ public class UsuarioMB extends AbstractMB implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject private UsuarioFacade usuarioFacade;
+	@Inject private EmailFacade emailFacade;
 
 	private UsuarioForm usuarioForm;
 
@@ -34,7 +37,7 @@ public class UsuarioMB extends AbstractMB implements Serializable {
 	public String getTesteIniciaTables(){
 		try {
 			
-			usuarioFacade.listAll();
+			Email email = emailFacade.detalharEmail("chopsss@gmail.com");
 			
 			displayInfoMessageToUser("DB criado com sucesso.");
 		} catch (Exception e) {
