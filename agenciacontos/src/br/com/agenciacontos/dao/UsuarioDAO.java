@@ -3,6 +3,8 @@ package br.com.agenciacontos.dao;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.hibernate.criterion.Restrictions;
+
 import br.com.agenciacontos.model.Usuario;
 import br.com.agenciacontos.util.Utils;
 
@@ -19,17 +21,39 @@ public class UsuarioDAO extends GenericDAO<Usuario> {
 		Usuario usuario = new Usuario();
 		
 		usuario.setPessoaId(pessoaId);
-		usuario.setSenha(senha);
+		usuario.setSenha(Utils.convertStringToMd5(senha));
 		usuario.setUsuarioTipo(usuarioTipo);
 		usuario.setCriado(Utils.getDataHoraAtual());
 		usuario.setModificado(Utils.getDataHoraAtual());
 		
 		getSession().persist(usuario);
 		
-		usuario.setSenha(null);
-		
 		return usuario;
 		
+	}
+	
+	public Usuario buscarUsuarioPorPessoaId(Integer pessoaId) throws Exception {
+
+		return (Usuario) getSession().createCriteria(Usuario.class)
+        	.add(Restrictions.eq("pessoaId", pessoaId))
+        	.uniqueResult();
+
+	}
+	
+	public Usuario autenticarUsuarioPorPessoaId(Integer pessoaId, String senha) throws Exception {
+
+		senha = Utils.convertStringToMd5(senha);
+		
+		Usuario usuario = (Usuario) getSession().createCriteria(Usuario.class)
+	        	.add(Restrictions.eq("pessoaId", pessoaId))
+	        	.add(Restrictions.eq("senha", senha))
+	        	.uniqueResult();
+		
+		if(usuario != null)
+			usuario.setSenha(null);
+		
+		return usuario;
+
 	}
 	
 	

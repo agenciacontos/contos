@@ -26,6 +26,9 @@ public class Pessoa implements Serializable {
 	@Transient
 	private Collection<Email> emails;
 	
+	@Transient
+	private Collection<Loja> lojas;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "pessoa_id", nullable = false, length = 11)
@@ -157,6 +160,14 @@ public class Pessoa implements Serializable {
 
 	public void setEmails(Collection<Email> emails) {
 		this.emails = emails;
+	}
+
+	public Collection<Loja> getLojas() {
+		return lojas;
+	}
+
+	public void setLojas(Collection<Loja> lojas) {
+		this.lojas = lojas;
 	}
 
 }

@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.agenciacontos.enums.DocumentoTipoEnum;
-import br.com.agenciacontos.facade.EmailFacade;
 import br.com.agenciacontos.facade.UsuarioFacade;
 import br.com.agenciacontos.model.Usuario;
 
@@ -19,7 +18,6 @@ public class UsuarioMB extends AbstractMB implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject private UsuarioFacade usuarioFacade;
-	@Inject private EmailFacade emailFacade;
 
 	private UsuarioForm usuarioForm;
 
@@ -64,7 +62,7 @@ public class UsuarioMB extends AbstractMB implements Serializable {
 											, usuarioForm.getEmail()
 											, usuarioForm.getSenha());
 			
-			displayInfoMessageToUser("Usuário criado com sucesso.");
+			displayInfoMessageToUser("Cadastro efetuado.", usuario.getPessoa().getNome() + " agora você está cadastrado no sistema, por favor efetue o login.");
 			
 		} catch (Exception e) {
 			displayErrorMessageToUser("Falha ao criar usuário.", e.getLocalizedMessage());

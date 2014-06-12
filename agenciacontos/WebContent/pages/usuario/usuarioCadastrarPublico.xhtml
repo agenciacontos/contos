@@ -36,7 +36,7 @@
 										</ul>
 									</div>
 									<!-- /btn-group -->
-									<h:inputText value="#{usuarioMB.usuarioForm.documentoTipo}" styleClass="documentoTipo" />
+									<h:inputHidden value="#{usuarioMB.usuarioForm.documentoTipo}" id="documentoTipo" />
 									<h:inputText styleClass="form-control cpf" style="display:block;" value="#{usuarioMB.usuarioForm.cpf}" id="cpf" />
 									<h:inputText styleClass="form-control cnpj" style="display:none;" value="#{usuarioMB.usuarioForm.cnpj}" id="cnpj" />
 								</h:panelGroup>
@@ -50,7 +50,7 @@
 						         
 							function alterarCpfCnpj(selecionar){
 
-								$(".documentoTipo").val(selecionar);
+								$(document.getElementById("#{p:component('documentoTipo')}")).val(selecionar);
 
 								if(selecionar == 1){
 									$(".labelSelectCpfCnpj").html("CPF");

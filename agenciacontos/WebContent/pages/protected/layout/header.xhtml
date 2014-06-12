@@ -38,13 +38,13 @@
 			<h:commandLink styleClass="btn btn-default" action="usuarioCadastrarPublico" immediate="true">Cadastrar</h:commandLink>
 		</h:form>	
 		
-		<h:form styleClass="navbar-form navbar-right" style="border:0px; margin:0px;" rendered="#{controleAcesso.isUsuarioLogado()}">
+		<h:form styleClass="navbar-form navbar-right" style="border:0px; margin:0px;" rendered="#{controleAcesso.usuarioLogado}">
 		<!-- Logado -->
 			<ul class="nav navbar-nav">
 				<li>
 					<a href="#about">
-						<h:outputText value="#{controleAcesso.usuarioAtual.nome}" /> 
-						 <h:outputText value=" ( #{controleAcesso.lojaAtual.nomeFantasia} )" rendered="#{controleAcesso.lojaAtual != null}" />
+						<h:outputText value="#{controleAcesso.usuarioAtual.pessoa.nome}" /> 
+						 <h:outputText value=" ( #{controleAcesso.lojaAtual.nome} )" rendered="#{controleAcesso.lojaAtual != null}" />
 					</a>
 						
 				</li>

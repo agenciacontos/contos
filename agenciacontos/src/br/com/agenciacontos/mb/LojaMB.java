@@ -32,7 +32,7 @@ public class LojaMB extends AbstractMB implements Serializable {
 	@Inject private Ponto pontosGerados;
 	
 	@PostConstruct
-	protected void init2() {  
+	protected void init() {  
 	    
 		if(usuario == null){
 			usuario = new Usuario();

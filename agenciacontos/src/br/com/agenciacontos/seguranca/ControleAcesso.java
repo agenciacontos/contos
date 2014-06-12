@@ -1,13 +1,11 @@
 package br.com.agenciacontos.seguranca;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-import br.com.agenciacontos.enums.UsuarioTipoEnum;
 import br.com.agenciacontos.model.Loja;
 import br.com.agenciacontos.model.Usuario;
 
@@ -73,7 +71,7 @@ public class ControleAcesso implements Serializable {
 	}
 	 
 	public boolean isUsuarioLogado(){
-		return (this.acessos != null);
+		return (this.usuarioAtual != null);
 	}
 	
 	public List<Acesso> getAcessos(){

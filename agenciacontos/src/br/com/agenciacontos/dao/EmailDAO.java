@@ -56,6 +56,14 @@ public class EmailDAO extends GenericDAO<Email> {
 
 	}
 	
+	public Email detalharEmailPorPessoaId(Integer pessoaId) throws Exception {
+
+		return (Email) getSession().createCriteria(Email.class)
+        	.add(Restrictions.eq("pessoaId", pessoaId))
+        	.uniqueResult();
+
+	}
+	
 	public boolean isEmailExistente(String email){
 		
 		Long qtd = (Long) getSession()

@@ -1,7 +1,7 @@
 package br.com.agenciacontos.mb;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
-import br.com.agenciacontos.facade.LojaFacade;
 import br.com.agenciacontos.facade.UsuarioFacade;
 import br.com.agenciacontos.model.Loja;
 import br.com.agenciacontos.model.Usuario;
@@ -27,52 +26,57 @@ public class LoginMB extends AbstractMB implements Serializable {
 	@Inject private ControleAcesso controleAcesso;
 	
 	@Inject private UsuarioFacade usuarioFacade;
-	@Inject private LojaFacade lojaFacade;
 	
 	private String emailDocumento;
 	private String senha;
-	private List<Loja> lojas;
+	private Collection<Loja> lojas;
 	private Usuario usuario;
 	private Loja loja;
 
 	public String loginUsuario() {
 		
-		if(conversation.isTransient())
-			conversation.begin();
-		
-		String email = null;
-		String documento = null;
-		if(getEmailDocumento() != null){
-			
-			if(getEmailDocumento().contains("@")){
-				email = getEmailDocumento();
-			}else{
-				documento = getEmailDocumento();
-			}
-			
-		}else{
-			displayErrorMessageToUser("Falha no login", "Preencha corretamente os dados de login.");
-			return null;
-		}
-		
 		try {
 			
-			usuario = usuarioFacade.verificarDadosLogin(email, documento, senha);
-			
-			if(getUsuario() != null){
+			boolean usuarioAutenticado = false;
+			if(getEmailDocumento() != null){
 				
-//				lojas = lojaFacade.listarLojasPorUsuario(usuario.getId());
-				
-				if(lojas.size() > 0){
-					
-					return "escolherPerfilLogin";
-					
+				if(isEmail(getEmailDocumento())){
+					usuarioAutenticado = usuarioFacade.autenticarUsuarioPorEmail(getEmailDocumento(), senha);
 				}else{
-					
-					return this.gravarDadosLogin();
-					
+					usuarioAutenticado = usuarioFacade.autenticarUsuarioPorDocumento(getEmailDocumento(), senha);
 				}
 				
+			}else{
+				displayErrorMessageToUser("Falha no login", "Preencha corretamente os dados de login.");
+				return null;
+			}
+			
+			if(usuarioAutenticado) {
+				
+				if(isEmail(getEmailDocumento())){
+					this.usuario = usuarioFacade.detalharUsuarioCompletoPorEmail(getEmailDocumento(), senha);
+				}else{
+					this.usuario = usuarioFacade.detalharUsuarioCompletoPorDocumento(getEmailDocumento(), senha);
+				}
+				
+				if(this.usuario.getPessoa().getLojas() != null){
+					
+					lojas = this.usuario.getPessoa().getLojas();
+					
+					if(lojas.size() > 0){
+						
+						return "escolherPerfilLogin";
+						
+					}else{
+						
+						return this.gravarDadosLogin();
+						
+					}
+					
+				}
+			}else{
+				displayErrorMessageToUser("Falha no login", "Os dados de autenticação não são válidos.");
+				return null;
 			}
 			
 		} catch (Exception e) {
@@ -82,21 +86,20 @@ public class LoginMB extends AbstractMB implements Serializable {
 
 		return null;
 	}
-
-	public String escolherPerfilLogin(){
-		return gravarDadosLogin();
+	
+	private boolean isEmail(String email){
+		return getEmailDocumento().contains("@");
 	}
 	
 	public String gravarDadosLogin(){
 		
-//		Loja loja = (Loja) httpServletRequest.getParameter("loja");
-		
 		if(getUsuario() != null){
-			controleAcesso.carregaAcessosPreDefinidosUsuario(getUsuario());
+			controleAcesso.carregaAcessosPreDefinidosUsuario(getUsuario()); // Ainda não está implementado por completo as permissões
 			controleAcesso.gravaUsuarioLogado(getUsuario());
 			controleAcesso.gravaLojaLogado(getLoja());
 		}else{
 			displayErrorMessageToUser("Falha ao efetuar login.", "Usuário está nulo.");
+			return null;
 		}
 		
 		if(!conversation.isTransient())
@@ -105,6 +108,29 @@ public class LoginMB extends AbstractMB implements Serializable {
 		return "/index.xhtml";
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	public String escolherPerfilLogin(){
+		return gravarDadosLogin();
+	}
+	
+	
 	
 	public String logOut() {
 		controleAcesso.logout();
@@ -132,11 +158,11 @@ public class LoginMB extends AbstractMB implements Serializable {
 	}
 
 
-	public List<Loja> getLojas() {
+	public Collection<Loja> getLojas() {
 		return lojas;
 	}
 
-	public void setLojas(List<Loja> lojas) {
+	public void setLojas(Collection<Loja> lojas) {
 		this.lojas = lojas;
 	}
 
