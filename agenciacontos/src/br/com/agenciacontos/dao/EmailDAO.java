@@ -56,4 +56,16 @@ public class EmailDAO extends GenericDAO<Email> {
 
 	}
 	
+	public boolean isEmailExistente(String email){
+		
+		Long qtd = (Long) getSession()
+							.createCriteria(Email.class)
+							.add(Restrictions.eq("email", email))
+							.setProjection(Projections.rowCount())
+							.uniqueResult();
+		
+		return qtd >= 1;
+		
+	}
+	
 }

@@ -11,8 +11,7 @@ import javax.inject.Named;
 import br.com.agenciacontos.enums.DocumentoTipoEnum;
 import br.com.agenciacontos.facade.EmailFacade;
 import br.com.agenciacontos.facade.UsuarioFacade;
-import br.com.agenciacontos.model.Email;
-import br.com.agenciacontos.util.Utils;
+import br.com.agenciacontos.model.Usuario;
 
 @RequestScoped
 @Named
@@ -37,7 +36,7 @@ public class UsuarioMB extends AbstractMB implements Serializable {
 	public String getTesteIniciaTables(){
 		try {
 			
-			Email email = emailFacade.detalharEmail("chopsss@gmail.com");
+//			Email email = emailFacade.detalharEmail("chopsss@gmail.com");
 			
 			displayInfoMessageToUser("DB criado com sucesso.");
 		} catch (Exception e) {
@@ -54,12 +53,12 @@ public class UsuarioMB extends AbstractMB implements Serializable {
 			
 			String documento = null;
 			if(usuarioForm.getDocumentoTipo().equals(DocumentoTipoEnum.CPF.getCodigo())){
-				documento = Utils.cpfSomenteNumeros(usuarioForm.getCpf());
+				documento = usuarioForm.getCpf();
 			}else{
-				documento = Utils.cnpjSomenteNumeros(usuarioForm.getCnpj());
+				documento = usuarioForm.getCnpj();
 			}
 			
-			usuarioFacade.cadastrarUsuario(DocumentoTipoEnum.getDocumentoTipoFromCodigo(usuarioForm.getDocumentoTipo())
+			Usuario usuario = usuarioFacade.cadastrarCliente(DocumentoTipoEnum.getDocumentoTipoFromCodigo(usuarioForm.getDocumentoTipo())
 											, documento
 											, usuarioForm.getNome()
 											, usuarioForm.getEmail()

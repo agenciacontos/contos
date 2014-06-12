@@ -14,15 +14,43 @@ public class UsuarioDAO extends GenericDAO<Usuario> {
 		super(Usuario.class);
 	}
 	
-	public Usuario buscarUsuarioPorEmail(String email){
+	public Usuario cadastrarUsuario(Integer pessoaId, String senha, Integer usuarioTipo) throws Exception {
 		
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("email", email);
-//		Usuario usuario = super.findOneResult(Usuario.BUSCAR_POR_EMAIL, parameters);
+		Usuario usuario = new Usuario();
 		
-//		return usuario;
-		return null;
+		usuario.setPessoaId(pessoaId);
+		usuario.setSenha(senha);
+		usuario.setUsuarioTipo(usuarioTipo);
+		usuario.setCriado(Utils.getDataHoraAtual());
+		usuario.setModificado(Utils.getDataHoraAtual());
+		
+		getSession().persist(usuario);
+		
+		usuario.setSenha(null);
+		
+		return usuario;
+		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public Usuario buscarUsuarioPorDocumento(String documento){
 		
@@ -33,6 +61,18 @@ public class UsuarioDAO extends GenericDAO<Usuario> {
 //		return usuario;
 		return null;
 	}
+	
+	public Usuario buscarUsuarioPorEmail(String email){
+		
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("email", email);
+//		Usuario usuario = super.findOneResult(Usuario.BUSCAR_POR_EMAIL, parameters);
+		
+//		return usuario;
+		return null;
+	}
+	
+	
 	
 	public Usuario verificarDadosLogin(String email, String documento, String senha) throws Exception {
 		

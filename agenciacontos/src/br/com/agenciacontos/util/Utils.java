@@ -15,18 +15,12 @@ public class Utils {
 		}
 	}
 	
-	public static String cpfSomenteNumeros(String cpfStr){
-		if(cpfStr != null)
-			return cpfStr.replaceAll("\\.", "").replaceAll("-", "");
-		else
-			return null;
-	}
-	
-	public static String cnpjSomenteNumeros(String cnpjStr){
-		if(cnpjStr != null)
-			return cnpjStr.replaceAll("\\.", "").replaceAll("-", "").replaceAll("/", "");
-		else
-			return null;
+	public static String somenteNumeros(String str){
+		if (str != null && !str.equalsIgnoreCase("")) {
+			return str.replaceAll("[^0123456789]", "");
+		} else {
+			return "";
+		}
 	}
 	
 	public static boolean isEmpty(String var){

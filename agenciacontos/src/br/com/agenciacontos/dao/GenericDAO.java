@@ -25,71 +25,71 @@ abstract class GenericDAO<T> implements Serializable {
 
 	private Class<T> entityClass;
 	
-	public Session getSession() {
+	protected Session getSession() {
 		return (Session) em.getDelegate();
 	}
 
-	public void beginTransaction() {
+	protected void beginTransaction() {
 //		em = emf.createEntityManager();
 
 		if(!em.getTransaction().isActive())
 			em.getTransaction().begin();
 	}
 	
-	public void closeTransaction() {
+	protected void closeTransaction() {
 		if (em != null) {
 		    em.close();
 		}
 		em.close();
 	}
 
-	public void commit() {
+	protected void commit() {
 		em.getTransaction().commit();
 	}
 
-	public void rollback() {
+	protected void rollback() {
 		em.getTransaction().rollback();
 	}
 
-	public void flush() {
+	protected void flush() {
 		em.flush();
 	}
 	
-	public void joinTransaction() {
+	protected void joinTransaction() {
 //		em = emf.createEntityManager();
 		em.joinTransaction();
 	}
 
-	public GenericDAO(Class<T> entityClass) {
+	protected GenericDAO(Class<T> entityClass) {
 		this.entityClass = entityClass;
 	}
 
-	public void save(T entity) {
+	protected void save(T entity) {
 		em.persist(entity);
 	}
 
-	public void delete(Object id, Class<T> classe) {
+	protected void delete(Object id, Class<T> classe) {
 		T entityToBeRemoved = em.getReference(classe, id);
 		 
         em.remove(entityToBeRemoved);
 	}
 
-	public T update(T entity) {
+	protected T update(T entity) {
 		return em.merge(entity);
 	}
 
-	public T find(int entityID) {
+	protected T find(int entityID) {
 		return em.find(entityClass, entityID);
 	}
 
-	public T findReferenceOnly(int entityID) {
+	protected T findReferenceOnly(int entityID) {
 		return em.getReference(entityClass, entityID);
 	}
 
 	// Using the unchecked because JPA does not have a
 	// em.getCriteriaBuilder().createQuery()<T> method
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public List<T> findAll() {
+	protected List<T> findAll() {
 		CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
 		cq.select(cq.from(entityClass));
 		return em.createQuery(cq).getResultList();
@@ -121,7 +121,7 @@ abstract class GenericDAO<T> implements Serializable {
 		return result;
 	}
 
-	private void populateQueryParameters(Query query, Map<String, Object> parameters) {
+	protected void populateQueryParameters(Query query, Map<String, Object> parameters) {
 		for (Entry<String, Object> entry : parameters.entrySet()) {
 			query.setParameter(entry.getKey(), entry.getValue());
 		}

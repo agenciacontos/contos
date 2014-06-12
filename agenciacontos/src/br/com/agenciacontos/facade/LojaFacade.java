@@ -44,22 +44,24 @@ public class LojaFacade extends AbstractFacade implements Serializable{
 	
 	public Loja findLoja(int lojaId) throws Exception {
 //		lojaDAO.beginTransaction();
-		Loja loja = lojaDAO.find(lojaId);
+//		Loja loja = lojaDAO.find(lojaId);
 //		lojaDAO.closeTransaction();
-		return loja;
+//		return loja;
+		return null;
 	}
 
 	public List<Loja> listAll() throws Exception {
 //		lojaDAO.beginTransaction();
-		List<Loja> result = lojaDAO.findAll();
+//		List<Loja> result = lojaDAO.findAll();
 //		lojaDAO.closeTransaction();
-		return result;
+//		return result;
+		return null;
 	}
 
 	public void deleteLoja(Loja loja) throws Exception {
 //		lojaDAO.beginTransaction();
-		Loja persistedLoja = lojaDAO.findReferenceOnly(loja.getId());
-		lojaDAO.delete(persistedLoja);
+//		Loja persistedLoja = lojaDAO.findReferenceOnly(loja.getId());
+//		lojaDAO.delete(persistedLoja);
 //		lojaDAO.commitAndCloseTransaction();
 	}
 }
