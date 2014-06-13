@@ -14,8 +14,8 @@ import br.com.agenciacontos.enums.UsuarioIdentificacaoTipoEnum;
 import br.com.agenciacontos.facade.LojaFacade;
 import br.com.agenciacontos.model.Loja;
 import br.com.agenciacontos.model.Ponto;
-import br.com.agenciacontos.model.Usuario;
 import br.com.agenciacontos.seguranca.ControleAcesso;
+import br.com.agenciacontos.util.Utils;
 
 @Named
 @RequestScoped
@@ -27,21 +27,19 @@ public class LojaMB extends AbstractMB implements Serializable {
 	@Inject private LojaFacade lojaFacade;
 //	@Inject private PontosFacade pontosFacade;
 	
+	private LojaForm lojaForm;
+	
 	private List<Loja> lojas;
-	@Inject private Usuario usuario;
 	@Inject private Ponto pontosGerados;
 	
 	@PostConstruct
 	protected void init() {  
-	    
-		if(usuario == null){
-			usuario = new Usuario();
-//			usuario.setIdentificacaoTipo(UsuarioIdentificacaoTipoEnum.EMAIL.getCodigo());
-		}
-
-		if(pontosGerados == null){
-			pontosGerados = new Ponto();
-			pontosGerados.setPontos(1L);
+		
+		if(lojaForm == null){
+			lojaForm = new LojaForm();
+			lojaForm.setUsuarioIdentificacaoTipo(UsuarioIdentificacaoTipoEnum.EMAIL.getCodigo());
+			lojaForm.setPontos(1L);
+			lojaForm.setValidade(Utils.getDataHoraAtual());
 		}
 		
 	} 
@@ -104,19 +102,20 @@ public class LojaMB extends AbstractMB implements Serializable {
 	/**
 	 * SETS e GETS
 	 */
-	public Usuario getUsuario() {
-		return usuario;
-	}
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
 	public Ponto getPontosGerados() {
 		return pontosGerados;
 	}
 
 	public void setPontosGerados(Ponto pontosGerados) {
 		this.pontosGerados = pontosGerados;
+	}
+
+	public LojaForm getLojaForm() {
+		return lojaForm;
+	}
+
+	public void setLojaForm(LojaForm lojaForm) {
+		this.lojaForm = lojaForm;
 	} 
 
 }
