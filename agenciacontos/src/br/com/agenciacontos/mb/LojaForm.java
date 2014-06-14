@@ -12,6 +12,13 @@ public class LojaForm implements Serializable  {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	private Integer documentoTipoLoja = DocumentoTipoEnum.CNPJ.getCodigo();
+	private String cpfLoja;
+	private String cnpjLoja;
+	private Integer documentoTipoPessoa = DocumentoTipoEnum.CPF.getCodigo();
+	private String cpfPessoa;
+	private String cnpjPessoa;
 	
 	private Integer documentoTipo = DocumentoTipoEnum.CNPJ.getCodigo();
 	private String cpf;
@@ -76,6 +83,54 @@ public class LojaForm implements Serializable  {
 
 	public void setNomeFantasia(String nomeFantasia) {
 		this.nomeFantasia = nomeFantasia;
+	}
+
+	public Integer getDocumentoTipoLoja() {
+		return documentoTipoLoja;
+	}
+
+	public void setDocumentoTipoLoja(Integer documentoTipoLoja) {
+		this.documentoTipoLoja = documentoTipoLoja;
+	}
+
+	public String getCpfLoja() {
+		return cpfLoja;
+	}
+
+	public void setCpfLoja(String cpfLoja) {
+		this.cpfLoja = cpfLoja;
+	}
+
+	public String getCnpjLoja() {
+		return cnpjLoja;
+	}
+
+	public void setCnpjLoja(String cnpjLoja) {
+		this.cnpjLoja = cnpjLoja;
+	}
+
+	public Integer getDocumentoTipoPessoa() {
+		return documentoTipoPessoa;
+	}
+
+	public void setDocumentoTipoPessoa(Integer documentoTipoPessoa) {
+		this.documentoTipoPessoa = documentoTipoPessoa;
+	}
+
+	public String getCpfPessoa() {
+		return cpfPessoa;
+	}
+
+	public void setCpfPessoa(String cpfPessoa) {
+		this.cpfPessoa = cpfPessoa;
+	}
+
+	public String getCnpjPessoa() {
+		return cnpjPessoa;
+	}
+
+	public void setCnpjPessoa(String cnpjPessoa) {
+		this.cnpjPessoa = cnpjPessoa;
 	}
 	
 	

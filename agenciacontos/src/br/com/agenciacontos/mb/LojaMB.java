@@ -36,6 +36,42 @@ public class LojaMB extends AbstractMB implements Serializable {
 		
 	} 
 	
+	public String vincularLojaPessoa(){
+		
+		try {
+			
+			String documentoLoja = null;
+			if(lojaForm.getDocumentoTipoLoja().equals(DocumentoTipoEnum.CPF.getCodigo())){
+				documentoLoja = lojaForm.getCpfLoja();
+			}else{
+				documentoLoja = lojaForm.getCnpjLoja();
+			}
+			
+			String documentoPessoa = null;
+			if(lojaForm.getDocumentoTipoPessoa().equals(DocumentoTipoEnum.CPF.getCodigo())){
+				documentoPessoa = lojaForm.getCpfPessoa();
+			}else{
+				documentoPessoa = lojaForm.getCnpjPessoa();
+			}
+		
+//			Loja loja = lojaFacade.cadastrarLoja(DocumentoTipoEnum.getDocumentoTipoFromCodigo(lojaForm.getDocumentoTipo())
+//												, documento
+//												, lojaForm.getNomeFantasia()
+//												, lojaForm.getEmail()
+//												, lojaForm.isIndicadorMatriz());
+			
+//			displayInfoMessageToUser("Cadastro efetuado com sucesso!", loja.getNomeFantasia());
+			
+		} catch (Exception e) {
+			
+			displayErrorMessageToUser("Falha ao buscar lojas.", e.getLocalizedMessage());
+			e.printStackTrace();
+			
+		}
+		
+		return "";
+	}
+	
 	public String cadastrarLoja(){
 		
 		try {

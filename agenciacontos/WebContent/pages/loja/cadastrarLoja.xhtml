@@ -64,7 +64,38 @@
 		</div>
 		
 		<div class="col-md-6">
-		vincular 
+			<h:form role="form" styleClass="form-horizontal">
+								
+				<div class="form-group">
+					<label for="documento" class="col-md-2 control-label">
+						Documento da loja
+					</label>
+					<div class="col-sm-6">
+						<ct:selectCpfCnpj   cpfValue="#{lojaMB.lojaForm.cpfLoja}"
+											cnpjValue="#{lojaMB.lojaForm.cnpjLoja}"
+											documentoTipoValue="#{lojaMB.lojaForm.documentoTipoLoja}"
+											identificador="docLoja" />
+					</div>
+					<!-- /.col-sm-6 -->
+				</div>
+								
+				<div class="form-group">
+					<label for="documento" class="col-md-2 control-label">
+						Documento do usuário
+					</label>
+					<div class="col-sm-6">
+						<ct:selectCpfCnpj   cpfValue="#{lojaMB.lojaForm.cpfPessoa}"
+											cnpjValue="#{lojaMB.lojaForm.cnpjPessoa}"
+											documentoTipoValue="#{lojaMB.lojaForm.documentoTipoPessoa}"
+											identificador="docPessoa" />
+					</div>
+					<!-- /.col-sm-6 -->
+				</div>
+				
+			
+				<h:commandButton styleClass="btn btn-default" id="cadastrarUsuario" action="#{lojaMB.vincularLojaPessoa()}" value="Cadastrar" />
+				
+			</h:form>
 		</div>
 		
 	</div>
