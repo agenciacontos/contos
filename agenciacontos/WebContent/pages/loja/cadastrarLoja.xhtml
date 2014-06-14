@@ -27,7 +27,7 @@
 							<label for="documento" class="col-md-3 control-label">
 								Documento
 							</label>
-							<div class="col-sm-6">
+							<div class="col-sm-9">
 								<ct:selectCpfCnpj   cpfValue="#{lojaMB.lojaForm.cpf}"
 													cnpjValue="#{lojaMB.lojaForm.cnpj}"
 													documentoTipoValue="#{lojaMB.lojaForm.documentoTipo}"
@@ -87,23 +87,28 @@
 							<label class="col-md-2 control-label">
 								Loja
 							</label>
-							<div class="col-sm-6">
+							<div class="col-sm-10">
 								<ct:selectCpfCnpj   cpfValue="#{lojaMB.lojaForm.cpfLoja}"
 													cnpjValue="#{lojaMB.lojaForm.cnpjLoja}"
 													documentoTipoValue="#{lojaMB.lojaForm.documentoTipoLoja}"
-													identificador="docLoja" />
+													identificador="docLoja"
+													mostrarNomeAction="#{lojaMB.mostrarNomeLoja()}"
+													nomeValue="#{lojaMB.lojaForm.nomeLoja}" />
 							</div>
+							
 						</div>
 										
 						<div class="form-group">
 							<label class="col-md-2 control-label">
 								Usuário
 							</label>
-							<div class="col-sm-6">
+							<div class="col-sm-10">
 								<ct:selectCpfCnpj   cpfValue="#{lojaMB.lojaForm.cpfPessoa}"
 													cnpjValue="#{lojaMB.lojaForm.cnpjPessoa}"
 													documentoTipoValue="#{lojaMB.lojaForm.documentoTipoPessoa}"
-													identificador="docPessoa" />
+													identificador="docPessoa"
+													mostrarNomeAction="#{lojaMB.mostrarNomePessoa()}"
+													nomeValue="#{lojaMB.lojaForm.nomePessoa}" />
 							</div>
 						</div>
 						
@@ -112,11 +117,9 @@
 								
 							</label>
 							<div class="col-sm-6">
-								<h:commandButton styleClass="btn btn-primary" id="cadastrarUsuario" action="#{lojaMB.vincularLojaPessoa()}" value="Vincular" />
+								<p:commandLink styleClass="btn btn-primary" id="cadastrarUsuario" action="#{lojaMB.vincularLojaPessoa()}" value="Vincular" />
 							</div>
 						</div>
-						
-					
 						
 					</h:form>
 				</div>

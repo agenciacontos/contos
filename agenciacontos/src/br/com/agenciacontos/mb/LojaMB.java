@@ -11,7 +11,9 @@ import javax.inject.Named;
 
 import br.com.agenciacontos.enums.DocumentoTipoEnum;
 import br.com.agenciacontos.facade.LojaFacade;
+import br.com.agenciacontos.facade.PessoaFacade;
 import br.com.agenciacontos.model.Loja;
+import br.com.agenciacontos.model.Pessoa;
 import br.com.agenciacontos.seguranca.ControleAcesso;
 
 @Named
@@ -22,6 +24,7 @@ public class LojaMB extends AbstractMB implements Serializable {
 	@Inject private ControleAcesso controleAcesso;
 	
 	@Inject private LojaFacade lojaFacade;
+	@Inject private PessoaFacade pessoaFacade;
 	
 	private LojaForm lojaForm;
 	
@@ -35,6 +38,64 @@ public class LojaMB extends AbstractMB implements Serializable {
 		}
 		
 	} 
+	
+	public String mostrarNomePessoa(){
+
+		try {
+			
+			String documentoPessoa = null;
+			if(lojaForm.getDocumentoTipoPessoa().equals(DocumentoTipoEnum.CPF.getCodigo())){
+				documentoPessoa = lojaForm.getCpfPessoa();
+			}else{
+				documentoPessoa = lojaForm.getCnpjPessoa();
+			}
+			
+			Pessoa pessoa =  pessoaFacade.detalharPessoaPorDocumento(DocumentoTipoEnum.getDocumentoTipoFromCodigo(lojaForm.getDocumentoTipoPessoa()) , documentoPessoa);
+			
+			String nomePessoa = "Não encontrado";
+			if(pessoa != null){
+				nomePessoa = pessoa.getNome();
+			}
+			
+			lojaForm.setNomePessoa(nomePessoa);
+			
+		} catch (Exception e) {
+			displayErrorMessageToUser("Falha ao criar usuário.", e.getLocalizedMessage());
+			e.printStackTrace();
+		}
+		
+		return "";
+
+	}
+	
+	public String mostrarNomeLoja(){
+
+		try {
+			
+			String documentoLoja = null;
+			if(lojaForm.getDocumentoTipoLoja().equals(DocumentoTipoEnum.CPF.getCodigo())){
+				documentoLoja = lojaForm.getCpfLoja();
+			}else{
+				documentoLoja = lojaForm.getCnpjLoja();
+			}
+			
+			Pessoa pessoa =  pessoaFacade.detalharPessoaPorDocumento(DocumentoTipoEnum.getDocumentoTipoFromCodigo(lojaForm.getDocumentoTipoLoja()) , documentoLoja);
+			
+			String nomeLoja = "Não encontrado";
+			if(pessoa != null){
+				nomeLoja = pessoa.getNome();
+			}
+			
+			lojaForm.setNomeLoja(nomeLoja);
+			
+		} catch (Exception e) {
+			displayErrorMessageToUser("Falha ao criar usuário.", e.getLocalizedMessage());
+			e.printStackTrace();
+		}
+		
+		return "";
+
+	}
 	
 	public String vincularLojaPessoa(){
 		

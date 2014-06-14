@@ -14,6 +14,21 @@ public enum UsuarioIdentificacaoTipoEnum {
 		this.texto = texto;
 	}
 	
+	public static UsuarioIdentificacaoTipoEnum getUsuarioIdentificacaoTipoFromCodigo(int codigo){
+		
+		for (UsuarioIdentificacaoTipoEnum usuarioIdentificacaoTipo : values()) {
+
+			if (usuarioIdentificacaoTipo.getCodigo() == codigo) {
+
+				return usuarioIdentificacaoTipo;
+
+			}
+
+		}
+
+		return null;
+	}
+	
 	public int getCodigo() {
 		return codigo;
 	}

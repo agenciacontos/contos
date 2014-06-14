@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:cc="http://java.sun.com/jsf/composite"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+ <cc:interface>
+ 	 <cc:attribute name="identificador" required="true" />
+     <cc:attribute name="emailValue" required="true" />
+     <cc:attribute name="cpfValue" required="true" />
+     <cc:attribute name="cnpjValue" required="true" />
+     <cc:attribute name="usuarioIdentificacaoTipo" required="true" />
+ </cc:interface>
+
+ <cc:implementation>
+     
+     <div id="escolherEmailCpfCnpj#{cc.attrs.identificador}" class="input-group">
+		<div class="input-group-btn">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+				<span class="labelSelectCpfCnpj#{cc.attrs.identificador}">CPF</span>
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+				<li style="display:block;" class="opcaoMenuEmail#{cc.attrs.identificador}"><a href="javascript:" onclick="alterarEmailCpfCnpj#{cc.attrs.identificador}(3);" >E-Mail</a></li>
+				<li style="display:none;" class="opcaoMenuCpf#{cc.attrs.identificador}"><a href="javascript:" onclick="alterarEmailCpfCnpj#{cc.attrs.identificador}(1);" >CPF</a></li>
+				<li style="display:block;" class="opcaoMenuCnpj#{cc.attrs.identificador}"><a href="javascript:" onclick="alterarEmailCpfCnpj#{cc.attrs.identificador}(2);" >CNPJ</a></li>
+			</ul>
+		</div>
+		<!-- /btn-group -->
+		<h:inputHidden value="#{cc.attrs.usuarioIdentificacaoTipo}" />
+		<h:inputText pt:type="email" styleClass="form-control email#{cc.attrs.identificador}" style="display:none;" value="#{cc.attrs.emailValue}" />
+		<h:inputText styleClass="form-control cpf cpf#{cc.attrs.identificador}" style="display:block;" value="#{cc.attrs.cpfValue}" />
+		<h:inputText styleClass="form-control cnpj cnpj#{cc.attrs.identificador}" style="display:none;" value="#{cc.attrs.cnpjValue}" />
+	</div>
+     
+	<script>
+	/*<![CDATA[*/
+	         
+		$( document ).ready(function() {
+		
+			alterarEmailCpfCnpj#{cc.attrs.identificador}(#{cc.attrs.usuarioIdentificacaoTipo});
+		
+		});
+	         
+		function alterarEmailCpfCnpj#{cc.attrs.identificador}(selecionar){
+
+			$( "#escolherEmailCpfCnpj#{cc.attrs.identificador}" ).find( "input[type='hidden']" ).not( "script" ).val(selecionar);
+
+			if(selecionar == 1){
+
+				$(".labelSelectCpfCnpj#{cc.attrs.identificador}").html("CPF");
+				
+				$(".email#{cc.attrs.identificador}").hide();
+				$(".cnpj#{cc.attrs.identificador}").hide();
+				$(".cpf#{cc.attrs.identificador}").show();
+				
+				$(".opcaoMenuCpf#{cc.attrs.identificador}").hide();
+				$(".opcaoMenuEmail#{cc.attrs.identificador}").show();
+				$(".opcaoMenuCnpj#{cc.attrs.identificador}").show();
+				
+			}else if(selecionar == 2){
+				
+				$(".labelSelectCpfCnpj#{cc.attrs.identificador}").html("CNPJ");
+				
+				$(".email#{cc.attrs.identificador}").hide();
+				$(".cpf#{cc.attrs.identificador}").hide();
+				$(".cnpj#{cc.attrs.identificador}").show();
+				
+				$(".opcaoMenuCnpj#{cc.attrs.identificador}").hide();
+				$(".opcaoMenuEmail#{cc.attrs.identificador}").show();
+				$(".opcaoMenuCpf#{cc.attrs.identificador}").show();
+				
+			}else if(selecionar == 3){
+				
+				$(".labelSelectCpfCnpj#{cc.attrs.identificador}").html("E-Mail");
+				
+				$(".cpf#{cc.attrs.identificador}").hide();
+				$(".cnpj#{cc.attrs.identificador}").hide();
+				$(".email#{cc.attrs.identificador}").show();
+				
+				$(".opcaoMenuCnpj#{cc.attrs.identificador}").show();
+				$(".opcaoMenuCpf#{cc.attrs.identificador}").show();
+				$(".opcaoMenuEmail#{cc.attrs.identificador}").hide();
+
+			}
+		}
+	      	
+	/*]]>*/
+	</script>
+     
+ </cc:implementation>
+</html>

@@ -4,7 +4,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ct="http://java.sun.com/jsf/composite/contostags">
 
 <ui:composition>
 	<div class="navbar-header">
@@ -16,7 +17,7 @@
 		<a class="navbar-brand" href="#">Contos</a>
 	</div>
 	<div class="navbar-collapse collapse">
-		<h:form style="border:0px; margin:0px;">
+		<h:form style="border:0px; margin:0px;" styleClass="">
 			<ul class="nav navbar-nav">
 				<li class="active"><h:commandLink action="/index.xhtml">Home</h:commandLink></li>
 				<li><a href="#about">About</a></li>
@@ -24,10 +25,14 @@
 			</ul>
 		</h:form>
 		
-		<h:form role="form" styleClass="navbar-form navbar-right" rendered="#{!controleAcesso.usuarioLogado}">
+		<h:form role="form" styleClass="navbar-form" rendered="#{!controleAcesso.usuarioLogado}">
 		<!-- Deslogado -->
-			<div class="form-group">
-				<h:inputText value="#{loginMB.emailDocumento}" id="emailDocumento" pt:placeholder="E-Mail ou CPF/CNPJ" styleClass="form-control" />
+			<div class="form-group col-md-3">
+				<ct:selectEmailCpfCnpj emailValue="#{loginMB.email}"
+									cpfValue="#{loginMB.cpf}"
+									cnpjValue="#{loginMB.cnpj}"
+									usuarioIdentificacaoTipo="#{loginMB.usuarioIdentificacaoTipo}"
+									identificador="idLogin" />
 			</div>
 			<div class="form-group">
 				<h:inputSecret pt:required="true" value="#{loginMB.senha}" id="senha" pt:placeholder="Senha" styleClass="form-control" />

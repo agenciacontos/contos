@@ -8,26 +8,41 @@
     TARGET="rules:#pages#usuario#usuarioCadastrarPublico.xhtml"
     TITLE="usuarioCadastrarPublico" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
+    ID="escolherPerfilLogin::#pages#usuario#escolherPerfilLogin.xhtml"
+    NAME="output6" PATH="/pages/usuario/escolherPerfilLogin.xhtml"
+    TARGET="rules:#pages#usuario#escolherPerfilLogin.xhtml"
+    TITLE="escolherPerfilLogin" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
     ID="cadastrarLoja::#pages#loja#cadastrarLoja.xhtml" NAME="output1"
     PATH="/pages/loja/cadastrarLoja.xhtml"
     TARGET="rules:#pages#loja#cadastrarLoja.xhtml" TITLE="cadastrarLoja" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
+    ID="listarMinhasLojas::#pages#loja#listarMinhas.xhtml"
+    NAME="output2" PATH="/pages/loja/listarMinhas.xhtml"
+    TARGET="rules:#pages#loja#listarMinhas.xhtml"
+    TITLE="listarMinhasLojas" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="campoComNomePessoa::#pages#loja#campoComNomePessoa.xhtml"
+    NAME="output3" PATH="/pages/loja/campoComNomePessoa.xhtml"
+    TARGET="rules:#pages#loja#campoComNomePessoa.xhtml"
+    TITLE="campoComNomePessoa" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="campoComNomeLoja::#pages#loja#campoComNomeLoja.xhtml"
+    NAME="output4" PATH="/pages/loja/campoComNomeLoja.xhtml"
+    TARGET="rules:#pages#loja#campoComNomeLoja.xhtml"
+    TITLE="campoComNomeLoja" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
     ID="fornecerPontos::#pages#ponto#fornecerPontos.xhtml"
-    NAME="output2" PATH="/pages/ponto/fornecerPontos.xhtml"
+    NAME="output5" PATH="/pages/ponto/fornecerPontos.xhtml"
     TARGET="rules:#pages#ponto#fornecerPontos.xhtml"
     TITLE="fornecerPontos" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="loginUsuario::#pages#public#login.xhtml"
-    NAME="output3" PATH="/pages/public/login.xhtml"
+    NAME="output7" PATH="/pages/public/login.xhtml"
     TARGET="rules:#pages#public#login.xhtml" TITLE="loginUsuario" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="acessoNegado::#pages#public#accessDenied.xhtml" NAME="output4"
+    ID="acessoNegado::#pages#public#accessDenied.xhtml" NAME="output8"
     PATH="/pages/public/accessDenied.xhtml"
     TARGET="rules:#pages#public#accessDenied.xhtml" TITLE="acessoNegado" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT
-    ID="escolherPerfilLogin::#pages#usuario#escolherPerfilLogin.xhtml"
-    NAME="output5" PATH="/pages/usuario/escolherPerfilLogin.xhtml"
-    TARGET="rules:#pages#usuario#escolherPerfilLogin.xhtml"
-    TITLE="escolherPerfilLogin" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#pages#usuario#escolherPerfilLogin.xhtml"
@@ -44,4 +59,8 @@
   PATH="/pages/ponto/fornecerPontos.xhtml" SHAPE="304,305,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#pages#loja#cadastrarLoja.xhtml"
   PATH="/pages/loja/cadastrarLoja.xhtml" SHAPE="304,305,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#loja#campoComNomeLoja.xhtml"
+  PATH="/pages/loja/campoComNomeLoja.xhtml" SHAPE="304,593,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#loja#campoComNomePessoa.xhtml"
+  PATH="/pages/loja/campoComNomePessoa.xhtml" SHAPE="304,369,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

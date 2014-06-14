@@ -16,11 +16,18 @@
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		
+<!-- 		Usuario -->
 		<navigation-case>
 			<from-outcome>usuarioCadastrarPublico</from-outcome>
 			<to-view-id>/pages/usuario/usuarioCadastrarPublico.xhtml</to-view-id>
 		</navigation-case>
 		
+		<navigation-case>
+			<from-outcome>escolherPerfilLogin</from-outcome>
+			<to-view-id>/pages/usuario/escolherPerfilLogin.xhtml</to-view-id>
+		</navigation-case>
+		
+<!-- 		Loja -->
 		<navigation-case>
 			<from-outcome>cadastrarLoja</from-outcome>
 			<to-view-id>/pages/loja/cadastrarLoja.xhtml</to-view-id>
@@ -32,10 +39,22 @@
 		</navigation-case>
 		
 		<navigation-case>
+			<from-outcome>campoComNomePessoa</from-outcome>
+			<to-view-id>/pages/loja/campoComNomePessoa.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>campoComNomeLoja</from-outcome>
+			<to-view-id>/pages/loja/campoComNomeLoja.xhtml</to-view-id>
+		</navigation-case>
+		
+<!-- 		Ponto -->
+		<navigation-case>
 			<from-outcome>fornecerPontos</from-outcome>
 			<to-view-id>/pages/ponto/fornecerPontos.xhtml</to-view-id>
 		</navigation-case>
 		
+<!-- 		Rever -->
 		<navigation-case>
 			<from-outcome>loginUsuario</from-outcome>
 			<to-view-id>/pages/public/login.xhtml</to-view-id>
@@ -44,11 +63,6 @@
 		<navigation-case>
 			<from-outcome>acessoNegado</from-outcome>
 			<to-view-id>/pages/public/accessDenied.xhtml</to-view-id>
-		</navigation-case>
-		
-		<navigation-case>
-			<from-outcome>escolherPerfilLogin</from-outcome>
-			<to-view-id>/pages/usuario/escolherPerfilLogin.xhtml</to-view-id>
 		</navigation-case>
 		
 	</navigation-rule>

@@ -31,9 +31,9 @@ public class UsuarioFacade extends AbstractFacade implements Serializable{
 		
 	}
 	
-	public boolean autenticarUsuarioPorDocumento(String documento, String senha) throws Exception {
+	public boolean autenticarUsuarioPorDocumento(DocumentoTipoEnum documentoTipo, String documento, String senha) throws Exception {
 		
-		Pessoa pessoa = pessoaDAO.detalharPessoaPorDocumento(documento);
+		Pessoa pessoa = pessoaDAO.detalharPessoaPorDocumento(documentoTipo, documento);
 		return autenticarUsuario(pessoa.getId(), senha);
 		
 	}
@@ -59,15 +59,15 @@ public class UsuarioFacade extends AbstractFacade implements Serializable{
 		
 	}
 	
-	public Usuario detalharUsuarioCompletoPorEmail(String email, String senha) throws Exception {
+	public Usuario detalharUsuarioCompletoPorEmail(String email) throws Exception {
 		
 		return detalharUsuarioCompleto(null, emailDAO.detalharEmail(email));
 		
 	}
 	
-	public Usuario detalharUsuarioCompletoPorDocumento(String documento, String senha) throws Exception {
+	public Usuario detalharUsuarioCompletoPorDocumento(DocumentoTipoEnum documentoTipo, String documento) throws Exception {
 		
-		return detalharUsuarioCompleto(pessoaDAO.detalharPessoaPorDocumento(documento), null);
+		return detalharUsuarioCompleto(pessoaDAO.detalharPessoaPorDocumento(documentoTipo, documento), null);
 		
 	}
 	

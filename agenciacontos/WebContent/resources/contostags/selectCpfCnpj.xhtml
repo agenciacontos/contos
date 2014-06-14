@@ -3,13 +3,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
    xmlns:cc="http://java.sun.com/jsf/composite"
    xmlns:h="http://java.sun.com/jsf/html"
-   xmlns:f="http://java.sun.com/jsf/core">
+   xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
  <cc:interface>
  	 <cc:attribute name="identificador" required="true" />
      <cc:attribute name="cpfValue" required="true" />
      <cc:attribute name="cnpjValue" required="true" />
      <cc:attribute name="documentoTipoValue" required="true" />
+     <cc:attribute name="mostrarNomeAction" method-signature="void action()" required="false" />
+     <cc:attribute name="nomeValue" required="false" />
  </cc:interface>
 
  <cc:implementation>
@@ -29,7 +32,17 @@
 		<h:inputHidden value="#{cc.attrs.documentoTipoValue}" />
 		<h:inputText styleClass="form-control cpf cpf#{cc.attrs.identificador}" style="display:block;" value="#{cc.attrs.cpfValue}" />
 		<h:inputText styleClass="form-control cnpj cnpj#{cc.attrs.identificador}" style="display:none;" value="#{cc.attrs.cnpjValue}" />
+		<h:panelGroup rendered="#{cc.attrs.mostrarNomeAction != null}" layout="block" styleClass="input-group-btn">
+			<p:commandLink styleClass="btn btn-default" value="Mostrar nome" action="#{cc.attrs.mostrarNomeAction}" update="nome#{cc.attrs.identificador}" />
+		</h:panelGroup>
 	</div>
+	<h:panelGroup id="nome#{cc.attrs.identificador}">
+		<h:panelGroup rendered="#{cc.attrs.nomeValue != null}">
+			<p class="help-block">
+				<h:outputText value="#{cc.attrs.nomeValue}" />
+			</p>
+		</h:panelGroup>
+	</h:panelGroup>
      
 	<script>
 	/*<![CDATA[*/

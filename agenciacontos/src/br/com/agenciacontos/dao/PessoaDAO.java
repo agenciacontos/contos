@@ -43,23 +43,25 @@ public class PessoaDAO extends GenericDAO<Pessoa> {
 
 	}
 	
-	public Pessoa detalharPessoaPorDocumento(String documento) throws Exception {
+	public Pessoa detalharPessoaPorDocumento(DocumentoTipoEnum documentoTipo, String documento) throws Exception {
 
 		documento = Utils.somenteNumeros(documento);
 		
 		return (Pessoa) getSession().createCriteria(Pessoa.class)
-        	.add(Restrictions.eq("documento", documento))
-        	.uniqueResult();
+	        	.add(Restrictions.eq("documentoTipo", documentoTipo.getCodigo()))
+	        	.add(Restrictions.eq("documento", documento))
+	        	.uniqueResult();
 
 	}
 	
-	public boolean isDocumentoCadastrado(String documento, DocumentoTipoEnum documentoTipoEnum){
+	public boolean isDocumentoCadastrado(String documento, DocumentoTipoEnum documentoTipo){
 		
 		documento = Utils.somenteNumeros(documento);
 		
 		Long qtd = (Long) getSession()
 							.createCriteria(Pessoa.class)
 							.add(Restrictions.eq("documento", documento))
+							.add(Restrictions.eq("documentoTipo", documentoTipo))
 							.setProjection(Projections.rowCount())
 							.uniqueResult();
 		

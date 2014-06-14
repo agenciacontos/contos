@@ -9,6 +9,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
+import br.com.agenciacontos.enums.DocumentoTipoEnum;
+import br.com.agenciacontos.enums.UsuarioIdentificacaoTipoEnum;
 import br.com.agenciacontos.facade.UsuarioFacade;
 import br.com.agenciacontos.model.Loja;
 import br.com.agenciacontos.model.Usuario;
@@ -27,8 +29,12 @@ public class LoginMB extends AbstractMB implements Serializable {
 	
 	@Inject private UsuarioFacade usuarioFacade;
 	
-	private String emailDocumento;
+	private String email;
+	private String cpf;
+	private String cnpj;
 	private String senha;
+	private Integer usuarioIdentificacaoTipo = UsuarioIdentificacaoTipoEnum.CPF.getCodigo();
+	
 	private Collection<Loja> lojas;
 	private Usuario usuario;
 	private Loja loja;
@@ -38,14 +44,24 @@ public class LoginMB extends AbstractMB implements Serializable {
 		try {
 			
 			boolean usuarioAutenticado = false;
-			if(getEmailDocumento() != null){
+			if(this.getEmail() != null || this.getCpf() != null || this.getCnpj() != null){
 				
-				if(isEmail(getEmailDocumento())){
-					usuarioAutenticado = usuarioFacade.autenticarUsuarioPorEmail(getEmailDocumento(), senha);
-				}else{
-					usuarioAutenticado = usuarioFacade.autenticarUsuarioPorDocumento(getEmailDocumento(), senha);
+				if(this.getUsuarioIdentificacaoTipo() == UsuarioIdentificacaoTipoEnum.EMAIL.getCodigo()){
+					
+					usuarioAutenticado = usuarioFacade.autenticarUsuarioPorEmail(this.getEmail(), this.getSenha());
+					
 				}
-				
+				if(this.getUsuarioIdentificacaoTipo() == UsuarioIdentificacaoTipoEnum.CPF.getCodigo()){
+					
+					usuarioAutenticado = usuarioFacade.autenticarUsuarioPorDocumento(DocumentoTipoEnum.CPF, this.getCpf(), this.getSenha());
+					
+				}
+				if(this.getUsuarioIdentificacaoTipo() == UsuarioIdentificacaoTipoEnum.CNPJ.getCodigo()){
+					
+					usuarioAutenticado = usuarioFacade.autenticarUsuarioPorDocumento(DocumentoTipoEnum.CNPJ, this.getCnpj(), this.getSenha());
+					
+				}
+
 			}else{
 				displayErrorMessageToUser("Falha no login", "Preencha corretamente os dados de login.");
 				return null;
@@ -53,10 +69,20 @@ public class LoginMB extends AbstractMB implements Serializable {
 			
 			if(usuarioAutenticado) {
 				
-				if(isEmail(getEmailDocumento())){
-					this.usuario = usuarioFacade.detalharUsuarioCompletoPorEmail(getEmailDocumento(), senha);
-				}else{
-					this.usuario = usuarioFacade.detalharUsuarioCompletoPorDocumento(getEmailDocumento(), senha);
+				if(this.getUsuarioIdentificacaoTipo() == UsuarioIdentificacaoTipoEnum.EMAIL.getCodigo()){
+					
+					this.usuario = usuarioFacade.detalharUsuarioCompletoPorEmail(this.getEmail());
+					
+				}
+				if(this.getUsuarioIdentificacaoTipo() == UsuarioIdentificacaoTipoEnum.CPF.getCodigo()){
+					
+					this.usuario = usuarioFacade.detalharUsuarioCompletoPorDocumento(DocumentoTipoEnum.CPF, this.getCpf());
+					
+				}
+				if(this.getUsuarioIdentificacaoTipo() == UsuarioIdentificacaoTipoEnum.CNPJ.getCodigo()){
+					
+					this.usuario = usuarioFacade.detalharUsuarioCompletoPorDocumento(DocumentoTipoEnum.CNPJ, this.getCnpj());
+					
 				}
 				
 				if(this.usuario.getPessoa().getLojas() != null){
@@ -85,10 +111,6 @@ public class LoginMB extends AbstractMB implements Serializable {
 		}
 
 		return null;
-	}
-	
-	private boolean isEmail(String email){
-		return getEmailDocumento().contains("@");
 	}
 	
 	public String gravarDadosLogin(){
@@ -149,15 +171,6 @@ public class LoginMB extends AbstractMB implements Serializable {
 		this.senha = senha;
 	}
 
-	public String getEmailDocumento() {
-		return emailDocumento;
-	}
-
-	public void setEmailDocumento(String emailDocumento) {
-		this.emailDocumento = emailDocumento;
-	}
-
-
 	public Collection<Loja> getLojas() {
 		return lojas;
 	}
@@ -180,6 +193,38 @@ public class LoginMB extends AbstractMB implements Serializable {
 
 	public void setLoja(Loja loja) {
 		this.loja = loja;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+
+	public Integer getUsuarioIdentificacaoTipo() {
+		return usuarioIdentificacaoTipo;
+	}
+
+	public void setUsuarioIdentificacaoTipo(Integer usuarioIdentificacaoTipo) {
+		this.usuarioIdentificacaoTipo = usuarioIdentificacaoTipo;
 	}
 
 }

@@ -16,9 +16,11 @@ public class LojaForm implements Serializable  {
 	private Integer documentoTipoLoja = DocumentoTipoEnum.CNPJ.getCodigo();
 	private String cpfLoja;
 	private String cnpjLoja;
+	private String nomeLoja;
 	private Integer documentoTipoPessoa = DocumentoTipoEnum.CPF.getCodigo();
 	private String cpfPessoa;
 	private String cnpjPessoa;
+	private String nomePessoa;
 	
 	private Integer documentoTipo = DocumentoTipoEnum.CNPJ.getCodigo();
 	private String cpf;
@@ -131,6 +133,22 @@ public class LojaForm implements Serializable  {
 
 	public void setCnpjPessoa(String cnpjPessoa) {
 		this.cnpjPessoa = cnpjPessoa;
+	}
+
+	public String getNomeLoja() {
+		return nomeLoja;
+	}
+
+	public void setNomeLoja(String nomeLoja) {
+		this.nomeLoja = nomeLoja;
+	}
+
+	public String getNomePessoa() {
+		return nomePessoa;
+	}
+
+	public void setNomePessoa(String nomePessoa) {
+		this.nomePessoa = nomePessoa;
 	}
 	
 	

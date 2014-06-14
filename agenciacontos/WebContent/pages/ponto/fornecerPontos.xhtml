@@ -3,7 +3,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ct="http://java.sun.com/jsf/composite/contostags">
 
 <ui:composition template="/pages/protected/layout/html5.xhtml">
 <ui:define name="content"> 
@@ -27,77 +28,14 @@
 								Identificação
 							</label>
 							<div class="col-sm-6">
-								<h:panelGroup styleClass="input-group" layout="block">
-									<div class="input-group-btn">
-										<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-											<span class="labelSelectCpfCnpj">E-Mail</span>
-											<span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu">
-											<li style="display:none;" class="opcaoMenuEmail"><a href="javascript:" onclick="alterarTipoIdentificacao(3);" >E-Mail</a></li>
-											<li style="display:block;" class="opcaoMenuCpf"><a href="javascript:" onclick="alterarTipoIdentificacao(1);" >CPF</a></li>
-											<li style="display:block;" class="opcaoMenuCnpj"><a href="javascript:" onclick="alterarTipoIdentificacao(2);" >CNPJ</a></li>
-										</ul>
-									</div>
-									<!-- /btn-group -->
-									<h:inputHidden value="#{pontoMB.pontoForm.usuarioIdentificacaoTipo}" id="usuarioIdentificacaoTipo" />
-									<h:inputText styleClass="form-control email" style="display:block;" value="#{pontoMB.pontoForm.email}" id="email" />
-									<h:inputText styleClass="form-control cpf" style="display:none;" value="#{pontoMB.pontoForm.cpf}" id="cpf" />
-									<h:inputText styleClass="form-control cnpj" style="display:none;" value="#{pontoMB.pontoForm.cnpj}" id="cnpj" />
-								</h:panelGroup>
-								<!-- /input-group -->
+								<ct:selectEmailCpfCnpj emailValue="#{pontoMB.pontoForm.email}"
+														cpfValue="#{pontoMB.pontoForm.cpf}"
+														cnpjValue="#{pontoMB.pontoForm.cnpj}"
+														usuarioIdentificacaoTipo="#{pontoMB.pontoForm.usuarioIdentificacaoTipo}"
+														identificador="forPt" />
 							</div>
 							<!-- /.col-sm-6 -->
 						</div>
-								
-						<script>
-						/*<![CDATA[*/
-						         
-							function alterarTipoIdentificacao(selecionar){
-
-								$(document.getElementById("#{p:component('usuarioIdentificacaoTipo')}")).val(selecionar);
-
-								if(selecionar == 1){
-									
-									$(".labelSelectCpfCnpj").html("CPF");
-									
-									$(".email").hide();
-									$(".cnpj").hide();
-									$(".cpf").show();
-									
-									$(".opcaoMenuCpf").hide();
-									$(".opcaoMenuEmail").show();
-									$(".opcaoMenuCnpj").show();
-									
-								}else if(selecionar == 2){
-									
-									$(".labelSelectCpfCnpj").html("CNPJ");
-
-									$(".email").hide();
-									$(".cpf").hide();
-									$(".cnpj").show();
-									
-									$(".opcaoMenuCnpj").hide();
-									$(".opcaoMenuEmail").show();
-									$(".opcaoMenuCpf").show();
-									
-								}else if(selecionar == 3){
-									
-									$(".labelSelectCpfCnpj").html("E-Mail");
-
-									$(".cpf").hide();
-									$(".cnpj").hide();
-									$(".email").show();
-									
-									$(".opcaoMenuCnpj").show();
-									$(".opcaoMenuCpf").show();
-									$(".opcaoMenuEmail").hide();
-									
-								}
-							}
-						      	
-						/*]]>*/
-						</script>
 						
 						<h:panelGroup layout="block" styleClass="form-group">
 							<label for="pontos" class="col-md-2 control-label">Pontos</label>
