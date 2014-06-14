@@ -51,11 +51,19 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">Opções <b class="caret"></b></a>
 					<ul class="dropdown-menu">
+					
+						<li class="dropdown-header">Opções Loja</li>
 						<li><h:commandLink action="fornecerPontos" immediate="true">Fornecer pontos</h:commandLink></li>
 						<li><h:commandLink action="listarMinhasLojas" immediate="true">Minhas lojas</h:commandLink></li>
+					
 						<li class="divider"></li>
-						<li class="dropdown-header">Outras opções</li>
+					
+						<li class="dropdown-header">Opções Admin</li>
+						<li><h:commandLink action="cadastrarLoja" immediate="true">Nova loja</h:commandLink></li>
+							
+						<li class="divider"></li>
 						<li><h:commandLink value="Sair" action="#{loginMB.logOut()}" /></li>
+						
 					</ul></li>
 			</ul>
 		</h:form>		

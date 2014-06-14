@@ -22,13 +22,18 @@
 		</navigation-case>
 		
 		<navigation-case>
+			<from-outcome>cadastrarLoja</from-outcome>
+			<to-view-id>/pages/loja/cadastrarLoja.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
 			<from-outcome>listarMinhasLojas</from-outcome>
 			<to-view-id>/pages/loja/listarMinhas.xhtml</to-view-id>
 		</navigation-case>
 		
 		<navigation-case>
 			<from-outcome>fornecerPontos</from-outcome>
-			<to-view-id>/pages/loja/fornecerPontos.xhtml</to-view-id>
+			<to-view-id>/pages/ponto/fornecerPontos.xhtml</to-view-id>
 		</navigation-case>
 		
 		<navigation-case>

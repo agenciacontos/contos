@@ -37,10 +37,10 @@
 										</ul>
 									</div>
 									<!-- /btn-group -->
-									<h:inputHidden value="#{lojaMB.lojaForm.usuarioIdentificacaoTipo}" id="usuarioIdentificacaoTipo" />
-									<h:inputText styleClass="form-control email" style="display:block;" value="#{lojaMB.lojaForm.email}" id="email" />
-									<h:inputText styleClass="form-control cpf" style="display:none;" value="#{lojaMB.lojaForm.cpf}" id="cpf" />
-									<h:inputText styleClass="form-control cnpj" style="display:none;" value="#{lojaMB.lojaForm.cnpj}" id="cnpj" />
+									<h:inputHidden value="#{pontoMB.pontoForm.usuarioIdentificacaoTipo}" id="usuarioIdentificacaoTipo" />
+									<h:inputText styleClass="form-control email" style="display:block;" value="#{pontoMB.pontoForm.email}" id="email" />
+									<h:inputText styleClass="form-control cpf" style="display:none;" value="#{pontoMB.pontoForm.cpf}" id="cpf" />
+									<h:inputText styleClass="form-control cnpj" style="display:none;" value="#{pontoMB.pontoForm.cnpj}" id="cnpj" />
 								</h:panelGroup>
 								<!-- /input-group -->
 							</div>
@@ -99,7 +99,7 @@
 						<h:panelGroup layout="block" styleClass="form-group">
 							<label for="pontos" class="col-md-2 control-label">Pontos</label>
 							<div class="col-sm-4">
-								<h:inputText value="#{lojaMB.lojaForm.pontos}" id="pontos" styleClass="form-control sppiner" />
+								<h:inputText value="#{pontoMB.pontoForm.pontos}" id="pontos" styleClass="form-control sppiner" />
 							</div>
 						</h:panelGroup>
 						
@@ -110,7 +110,7 @@
 				                    <span class="input-group-addon">
 				                    	R$
 				                    </span>
-									<h:inputText value="#{lojaMB.lojaForm.valor}" converter="moedaConverter" id="valor" styleClass="form-control money2" />
+									<h:inputText value="#{pontoMB.pontoForm.valor}" converter="moedaConverter" id="valor" styleClass="form-control money2" />
 				                </div>
 							</div>
 						</h:panelGroup>
@@ -119,7 +119,7 @@
 							<label for="nome" class="col-md-2 control-label">Validade</label>
 							<div class="col-sm-4">
 				                <div class="input-group pickerDiaMesAno">
-				                    <h:inputText value="#{lojaMB.lojaForm.validade}" converter="dataConverter" id="validade" styleClass="form-control pickerDiaMesAno" />
+				                    <h:inputText value="#{pontoMB.pontoForm.validade}" converter="dataConverter" id="validade" styleClass="form-control pickerDiaMesAno" />
 				                    <span class="input-group-addon">
 				                    	<span class="glyphicon glyphicon-time"></span>
 				                    </span>
@@ -130,7 +130,7 @@
 						<div class="form-group">
 							<label for="senha" class="col-md-2 control-label">Descrição</label>
 							<div class="col-sm-10">
-								<h:inputTextarea value="#{lojaMB.lojaForm.descricao}" id="descricao" styleClass="form-control" />
+								<h:inputTextarea value="#{pontoMB.pontoForm.descricao}" id="descricao" styleClass="form-control" />
 							</div>
 						</div>
 					

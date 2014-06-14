@@ -92,6 +92,6 @@ public class UsuarioMB extends AbstractMB implements Serializable {
 
 	public void setUsuarioForm(UsuarioForm usuarioForm) {
 		this.usuarioForm = usuarioForm;
-	} 
+	}
 
 }

@@ -18,7 +18,7 @@ public class PessoaDAO extends GenericDAO<Pessoa> {
 	public Pessoa cadastrarPessoa(DocumentoTipoEnum documentoTipo, String documento, String nome) throws Exception {
 		
 		Pessoa pessoa = new Pessoa();
-		pessoa.setDocumento(documento);
+		pessoa.setDocumento(Utils.somenteNumeros(documento));
 		pessoa.setDocumentoTipo(documentoTipo.getCodigo());
 		pessoa.setNome(nome);
 //		pessoa.setDataNascimento(dataNascimento);

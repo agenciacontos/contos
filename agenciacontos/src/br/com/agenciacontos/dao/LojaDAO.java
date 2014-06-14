@@ -5,6 +5,7 @@ import java.util.Collection;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.agenciacontos.model.Loja;
+import br.com.agenciacontos.util.Utils;
 
 public class LojaDAO extends GenericDAO<Loja> {
 	private static final long serialVersionUID = 1L;
@@ -20,6 +21,22 @@ public class LojaDAO extends GenericDAO<Loja> {
         	.add(Restrictions.eq("pessoaId", pessoaId))
         	.list();
 
+	}
+	
+	public Loja cadastrarLoja(Integer pessoaId, String nomeFantasia, boolean indicadorMatriz) throws Exception {
+		
+		Loja loja = new Loja();
+		
+		loja.setPessoaId(pessoaId);
+		loja.setNomeFantasia(nomeFantasia);
+		loja.setIndicadorMatriz(indicadorMatriz);
+		loja.setCriado(Utils.getDataHoraAtual());
+		loja.setModificado(Utils.getDataHoraAtual());
+		
+		getSession().persist(loja);
+		
+		return loja;
+		
 	}
 	
 	

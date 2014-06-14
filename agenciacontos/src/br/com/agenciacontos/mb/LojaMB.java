@@ -10,12 +10,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.agenciacontos.enums.DocumentoTipoEnum;
-import br.com.agenciacontos.enums.UsuarioIdentificacaoTipoEnum;
 import br.com.agenciacontos.facade.LojaFacade;
 import br.com.agenciacontos.model.Loja;
-import br.com.agenciacontos.model.Ponto;
 import br.com.agenciacontos.seguranca.ControleAcesso;
-import br.com.agenciacontos.util.Utils;
 
 @Named
 @RequestScoped
@@ -25,24 +22,49 @@ public class LojaMB extends AbstractMB implements Serializable {
 	@Inject private ControleAcesso controleAcesso;
 	
 	@Inject private LojaFacade lojaFacade;
-//	@Inject private PontosFacade pontosFacade;
 	
 	private LojaForm lojaForm;
 	
-	private List<Loja> lojas;
-	@Inject private Ponto pontosGerados;
 	
 	@PostConstruct
 	protected void init() {  
 		
 		if(lojaForm == null){
 			lojaForm = new LojaForm();
-			lojaForm.setUsuarioIdentificacaoTipo(UsuarioIdentificacaoTipoEnum.EMAIL.getCodigo());
-			lojaForm.setPontos(1L);
-			lojaForm.setValidade(Utils.getDataHoraAtual());
+			lojaForm.setLojas(new ArrayList<Loja>());
 		}
 		
 	} 
+	
+	public String cadastrarLoja(){
+		
+		try {
+			
+			String documento = null;
+			if(lojaForm.getDocumentoTipo().equals(DocumentoTipoEnum.CPF.getCodigo())){
+				documento = lojaForm.getCpf();
+			}else{
+				documento = lojaForm.getCnpj();
+			}
+		
+			Loja loja = lojaFacade.cadastrarLoja(DocumentoTipoEnum.getDocumentoTipoFromCodigo(lojaForm.getDocumentoTipo())
+												, documento
+												, lojaForm.getNomeFantasia()
+												, lojaForm.getEmail()
+												, lojaForm.isIndicadorMatriz());
+			
+			displayInfoMessageToUser("Cadastro efetuado com sucesso!", loja.getNomeFantasia());
+			
+		} catch (Exception e) {
+			
+			displayErrorMessageToUser("Falha ao buscar lojas.", e.getLocalizedMessage());
+			e.printStackTrace();
+			
+		}
+		
+		return "";
+	}
+	
 	
 	public List<Loja> getLojas(){
 
@@ -51,7 +73,7 @@ public class LojaMB extends AbstractMB implements Serializable {
 //			if(lojas == null)
 //				lojas = lojaFacade.listarLojasPorUsuario(controleAcesso.getUsuarioAtual().getId());
 			
-			return lojas;
+			return lojaForm.getLojas();
 			
 		} catch (Exception e) {
 			displayErrorMessageToUser("Falha ao buscar lojas.", e.getLocalizedMessage());
@@ -62,26 +84,13 @@ public class LojaMB extends AbstractMB implements Serializable {
 		
 	}
 	
-	public LabelValue[] getDocumentoTiposLabelValue(){
-		
-		LabelValue labelValue[] = new LabelValue[DocumentoTipoEnum.values().length];
-		int i = 0;
-		for (DocumentoTipoEnum documentoTipoEnum : DocumentoTipoEnum.values()) {
-			labelValue[i] = new LabelValue(documentoTipoEnum.getTexto(), String.valueOf(documentoTipoEnum.getCodigo()));
-			i++;
-		}
-		
-		return labelValue;
-			
-	}
-	
 	public String fornecerPontos(){
 		
 		try {
 			
 //			usuario.setNome("TESTE DE NOME");
 			
-			pontosGerados.setLojaId(controleAcesso.getLojaAtual().getId());
+//			pontosGerados.setLojaId(controleAcesso.getLojaAtual().getId());
 //			pontosGerados.setUsuarioExecutanteId(controleAcesso.getUsuario().getId());
 			
 			//buscar id do usuario para mandar 
@@ -97,18 +106,6 @@ public class LojaMB extends AbstractMB implements Serializable {
 		return "";
 		
 	}
-	
-
-	/**
-	 * SETS e GETS
-	 */
-	public Ponto getPontosGerados() {
-		return pontosGerados;
-	}
-
-	public void setPontosGerados(Ponto pontosGerados) {
-		this.pontosGerados = pontosGerados;
-	}
 
 	public LojaForm getLojaForm() {
 		return lojaForm;
@@ -116,6 +113,6 @@ public class LojaMB extends AbstractMB implements Serializable {
 
 	public void setLojaForm(LojaForm lojaForm) {
 		this.lojaForm = lojaForm;
-	} 
-
+	}
+	
 }

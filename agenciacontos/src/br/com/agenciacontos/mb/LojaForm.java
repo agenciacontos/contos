@@ -1,9 +1,10 @@
 package br.com.agenciacontos.mb;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
 
-import br.com.agenciacontos.enums.UsuarioIdentificacaoTipoEnum;
+import br.com.agenciacontos.enums.DocumentoTipoEnum;
+import br.com.agenciacontos.model.Loja;
 
 public class LojaForm implements Serializable  {
 
@@ -12,63 +13,70 @@ public class LojaForm implements Serializable  {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Integer usuarioIdentificacaoTipo = UsuarioIdentificacaoTipoEnum.EMAIL.getCodigo();
+	private Integer documentoTipo = DocumentoTipoEnum.CNPJ.getCodigo();
 	private String cpf;
 	private String cnpj;
+	private String nomeFantasia;
 	private String email;
-	private Long pontos = 1L;
-	private Double valor;
-	private String descricao;
-	private Date validade;
-	public Integer getUsuarioIdentificacaoTipo() {
-		return usuarioIdentificacaoTipo;
+	private boolean indicadorMatriz = false;
+	
+	private List<Loja> lojas;
+
+	public Integer getDocumentoTipo() {
+		return documentoTipo;
 	}
-	public void setUsuarioIdentificacaoTipo(Integer usuarioIdentificacaoTipo) {
-		this.usuarioIdentificacaoTipo = usuarioIdentificacaoTipo;
+
+	public void setDocumentoTipo(Integer documentoTipo) {
+		this.documentoTipo = documentoTipo;
 	}
+
 	public String getCpf() {
 		return cpf;
 	}
+
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+
 	public String getCnpj() {
 		return cnpj;
 	}
+
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Long getPontos() {
-		return pontos;
+
+	public boolean isIndicadorMatriz() {
+		return indicadorMatriz;
 	}
-	public void setPontos(Long pontos) {
-		this.pontos = pontos;
+
+	public void setIndicadorMatriz(boolean indicadorMatriz) {
+		this.indicadorMatriz = indicadorMatriz;
 	}
-	public Double getValor() {
-		return valor;
+
+	public List<Loja> getLojas() {
+		return lojas;
 	}
-	public void setValor(Double valor) {
-		this.valor = valor;
+
+	public void setLojas(List<Loja> lojas) {
+		this.lojas = lojas;
 	}
-	public String getDescricao() {
-		return descricao;
+
+	public String getNomeFantasia() {
+		return nomeFantasia;
 	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+
+	public void setNomeFantasia(String nomeFantasia) {
+		this.nomeFantasia = nomeFantasia;
 	}
-	public Date getValidade() {
-		return validade;
-	}
-	public void setValidade(Date validade) {
-		this.validade = validade;
-	}
-	
 	
 	
 }

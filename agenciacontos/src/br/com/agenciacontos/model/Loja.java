@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
@@ -30,11 +28,11 @@ public class Loja implements Serializable{
 	@Column(name = "pessoa_id", nullable = false, length = 11)
 	private int pessoaId;
 	
-	@Column(name = "nome", nullable = true, length = 100)
-	private String nome;
+	@Column(name = "nome_fantasia", nullable = true, length = 100)
+	private String nomeFantasia;
 	
 	@Column(name = "indicador_matriz", nullable = true)
-	private Boolean indicador_matriz;
+	private Boolean indicadorMatriz;
 	
 	@Column(name = "criado", nullable = true)
 	private Date criado;
@@ -66,22 +64,6 @@ public class Loja implements Serializable{
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public Boolean getIndicador_matriz() {
-		return indicador_matriz;
-	}
-
-	public void setIndicador_matriz(Boolean indicador_matriz) {
-		this.indicador_matriz = indicador_matriz;
-	}
-
 	public Date getCriado() {
 		return criado;
 	}
@@ -104,6 +86,22 @@ public class Loja implements Serializable{
 
 	public void setPessoaId(int pessoaId) {
 		this.pessoaId = pessoaId;
+	}
+
+	public String getNomeFantasia() {
+		return nomeFantasia;
+	}
+
+	public void setNomeFantasia(String nomeFantasia) {
+		this.nomeFantasia = nomeFantasia;
+	}
+
+	public Boolean getIndicadorMatriz() {
+		return indicadorMatriz;
+	}
+
+	public void setIndicadorMatriz(Boolean indicadorMatriz) {
+		this.indicadorMatriz = indicadorMatriz;
 	}
 	
 }
