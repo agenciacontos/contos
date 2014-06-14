@@ -4,6 +4,7 @@
    xmlns:cc="http://java.sun.com/jsf/composite"
    xmlns:h="http://java.sun.com/jsf/html"
    xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
  <cc:interface>
@@ -12,6 +13,8 @@
      <cc:attribute name="cpfValue" required="true" />
      <cc:attribute name="cnpjValue" required="true" />
      <cc:attribute name="usuarioIdentificacaoTipo" required="true" />
+     <cc:attribute name="mostrarNomeAction" method-signature="void action()" required="false" />
+     <cc:attribute name="nomeValue" required="false" />
  </cc:interface>
 
  <cc:implementation>
@@ -33,7 +36,17 @@
 		<h:inputText pt:type="email" styleClass="form-control email#{cc.attrs.identificador}" style="display:none;" value="#{cc.attrs.emailValue}" />
 		<h:inputText styleClass="form-control cpf cpf#{cc.attrs.identificador}" style="display:block;" value="#{cc.attrs.cpfValue}" />
 		<h:inputText styleClass="form-control cnpj cnpj#{cc.attrs.identificador}" style="display:none;" value="#{cc.attrs.cnpjValue}" />
+		<h:panelGroup rendered="#{cc.attrs.mostrarNomeAction != null}" layout="block" styleClass="input-group-btn">
+			<p:commandLink styleClass="btn btn-default" value="Mostrar nome" action="#{cc.attrs.mostrarNomeAction}" update="nome#{cc.attrs.identificador}" />
+		</h:panelGroup>
 	</div>
+	<h:panelGroup id="nome#{cc.attrs.identificador}">
+		<h:panelGroup rendered="#{cc.attrs.nomeValue != null}">
+			<p class="help-block">
+				<h:outputText value="#{cc.attrs.nomeValue}" />
+			</p>
+		</h:panelGroup>
+	</h:panelGroup>
      
 	<script>
 	/*<![CDATA[*/

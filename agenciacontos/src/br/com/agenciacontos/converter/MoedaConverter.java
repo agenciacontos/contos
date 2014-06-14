@@ -1,7 +1,6 @@
 package br.com.agenciacontos.converter;
 
 import java.text.DecimalFormat;
-import java.util.Currency;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -17,14 +16,22 @@ public class MoedaConverter implements Converter {
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 
-		return Double.parseDouble(value.replaceAll("\\.", "").replaceAll(",", "."));  
+		if(value != null && !value.equalsIgnoreCase("")){
+			return Double.parseDouble(value.replaceAll("\\.", "").replaceAll(",", "."));  
+		}else{
+			return null;
+		}
 		
 	}
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
 
-		return formato.format(value);
+		if(value != null){
+			return formato.format(value);
+		}else{
+			return null;
+		}
 		
 	}
 }

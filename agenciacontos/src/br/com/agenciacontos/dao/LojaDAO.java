@@ -23,6 +23,13 @@ public class LojaDAO extends GenericDAO<Loja> {
 
 	}
 	
+	@SuppressWarnings("unchecked")
+	public Collection<Loja> listarTodasLojas() throws Exception {
+
+		return getSession().createCriteria(Loja.class).list();
+
+	}
+	
 	public Loja cadastrarLoja(Integer pessoaId, String nomeFantasia, boolean indicadorMatriz) throws Exception {
 		
 		Loja loja = new Loja();

@@ -6,6 +6,10 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 
 public class Utils {
+
+	public static java.sql.Date utilDateToSqlDate(java.util.Date utilDate) {
+	    return new java.sql.Date(utilDate.getTime());
+    }
 	
 	public static Integer parseInt(String str){
 		if(str != null && !str.equalsIgnoreCase("")){

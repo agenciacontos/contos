@@ -58,61 +58,24 @@ public class LojaFacade extends AbstractFacade implements Serializable{
 		
 		return loja;
 		
-	}	
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public List<Loja> listarLojasPorUsuario(Integer usuario_id) throws Exception {
-		
-		//buscando o id das lojas
-//		List<PessoaLoja> usuarioLojas = lojaDAO.detalharLojaPorPessoaId(pessoaId);
+	public List<Loja> vincularLojaPessoa(DocumentoTipoEnum documentoTipoLoja, String documentoLoja, DocumentoTipoEnum documentoTipoPessoa, String documentoPessoa) throws Exception {
 
-		// TODO corrigir
-//		List<Integer> lojas_id = new ArrayList<Integer>();
-//		for (Object usuarioLoja : usuarioLojas.toArray()) {
-//			PessoaLoja uLoja = (PessoaLoja) usuarioLoja;
-//			lojas_id.add(uLoja.getId());
-//		}
-//		
-//		if(lojas_id == null || lojas_id.size() <= 0)
-//			return new ArrayList<Loja>();
 		
-//		return lojaDAO.listarLojasPorId(lojas_id);
 		return null;
 	}	
 	
-	public Loja findLoja(int lojaId) throws Exception {
-//		lojaDAO.beginTransaction();
-//		Loja loja = lojaDAO.find(lojaId);
-//		lojaDAO.closeTransaction();
-//		return loja;
-		return null;
-	}
+	public List<Loja> listarLojasPorUsuario(Integer pessoaId) throws Exception {
 
-	public List<Loja> listAll() throws Exception {
-//		lojaDAO.beginTransaction();
-//		List<Loja> result = lojaDAO.findAll();
-//		lojaDAO.closeTransaction();
-//		return result;
+		
+		
 		return null;
-	}
+	}	
+	
+	public Collection<Loja> listarTodasLojas() throws Exception {
 
-	public void deleteLoja(Loja loja) throws Exception {
-//		lojaDAO.beginTransaction();
-//		Loja persistedLoja = lojaDAO.findReferenceOnly(loja.getId());
-//		lojaDAO.delete(persistedLoja);
-//		lojaDAO.commitAndCloseTransaction();
-	}
+		return lojaDAO.listarTodasLojas();
+	}	
+	
 }

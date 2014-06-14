@@ -16,10 +16,12 @@ public class PontoForm implements Serializable  {
 	private String cpf;
 	private String cnpj;
 	private String email;
+	private String nomeCliente;
 	private Long pontos = 1L;
-	private Double valor;
+	private Double valor = 0.00;
 	private String descricao;
 	private Date validade;
+	private Integer cartao;
 	
 	public Integer getUsuarioIdentificacaoTipo() {
 		return usuarioIdentificacaoTipo;
@@ -68,6 +70,18 @@ public class PontoForm implements Serializable  {
 	}
 	public void setValidade(Date validade) {
 		this.validade = validade;
+	}
+	public String getNomeCliente() {
+		return nomeCliente;
+	}
+	public void setNomeCliente(String nomeCliente) {
+		this.nomeCliente = nomeCliente;
+	}
+	public Integer getCartao() {
+		return cartao;
+	}
+	public void setCartao(Integer cartao) {
+		this.cartao = cartao;
 	}
 	
 	

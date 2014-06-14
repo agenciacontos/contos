@@ -1,7 +1,7 @@
 package br.com.agenciacontos.mb;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 
 import br.com.agenciacontos.enums.DocumentoTipoEnum;
 import br.com.agenciacontos.model.Loja;
@@ -29,7 +29,8 @@ public class LojaForm implements Serializable  {
 	private String email;
 	private boolean indicadorMatriz = false;
 	
-	private List<Loja> lojas;
+	private Collection<Loja> lojasClienteLogado;
+	private Collection<Loja> todasLojas;
 
 	public Integer getDocumentoTipo() {
 		return documentoTipo;
@@ -69,14 +70,6 @@ public class LojaForm implements Serializable  {
 
 	public void setIndicadorMatriz(boolean indicadorMatriz) {
 		this.indicadorMatriz = indicadorMatriz;
-	}
-
-	public List<Loja> getLojas() {
-		return lojas;
-	}
-
-	public void setLojas(List<Loja> lojas) {
-		this.lojas = lojas;
 	}
 
 	public String getNomeFantasia() {
@@ -149,6 +142,22 @@ public class LojaForm implements Serializable  {
 
 	public void setNomePessoa(String nomePessoa) {
 		this.nomePessoa = nomePessoa;
+	}
+
+	public Collection<Loja> getLojasClienteLogado() {
+		return lojasClienteLogado;
+	}
+
+	public void setLojasClienteLogado(Collection<Loja> lojasClienteLogado) {
+		this.lojasClienteLogado = lojasClienteLogado;
+	}
+
+	public Collection<Loja> getTodasLojas() {
+		return todasLojas;
+	}
+
+	public void setTodasLojas(Collection<Loja> todasLojas) {
+		this.todasLojas = todasLojas;
 	}
 	
 	

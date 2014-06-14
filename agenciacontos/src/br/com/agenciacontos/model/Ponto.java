@@ -5,23 +5,20 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "ponto")
+@IdClass(PontoPK.class)
 public class Ponto implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name = "ponto_id", nullable = false, length = 11)
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	@Id
-	@Column(name = "loja_id", nullable = false, length = 11)
 	private int lojaId;
 	
 	@Column(name = "pessoa_id", nullable = false, length = 11)

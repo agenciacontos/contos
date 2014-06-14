@@ -38,7 +38,7 @@ public class PessoaDAO extends GenericDAO<Pessoa> {
 	public Pessoa detalharPessoaPorId(Integer pessoaId) throws Exception {
 
 		return (Pessoa) getSession().createCriteria(Pessoa.class)
-        	.add(Restrictions.eq("pessoaId", pessoaId))
+        	.add(Restrictions.eq("id", pessoaId))
         	.uniqueResult();
 
 	}

@@ -2,7 +2,7 @@ package br.com.agenciacontos.mb;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -34,7 +34,6 @@ public class LojaMB extends AbstractMB implements Serializable {
 		
 		if(lojaForm == null){
 			lojaForm = new LojaForm();
-			lojaForm.setLojas(new ArrayList<Loja>());
 		}
 		
 	} 
@@ -60,7 +59,7 @@ public class LojaMB extends AbstractMB implements Serializable {
 			lojaForm.setNomePessoa(nomePessoa);
 			
 		} catch (Exception e) {
-			displayErrorMessageToUser("Falha ao criar usuário.", e.getLocalizedMessage());
+			displayErrorMessageToUser("Falha ao buscar.", e.getLocalizedMessage());
 			e.printStackTrace();
 		}
 		
@@ -89,7 +88,7 @@ public class LojaMB extends AbstractMB implements Serializable {
 			lojaForm.setNomeLoja(nomeLoja);
 			
 		} catch (Exception e) {
-			displayErrorMessageToUser("Falha ao criar usuário.", e.getLocalizedMessage());
+			displayErrorMessageToUser("Falha ao buscar.", e.getLocalizedMessage());
 			e.printStackTrace();
 		}
 		
@@ -115,6 +114,7 @@ public class LojaMB extends AbstractMB implements Serializable {
 				documentoPessoa = lojaForm.getCnpjPessoa();
 			}
 		
+			// TODO fazer a vinculacao
 //			Loja loja = lojaFacade.cadastrarLoja(DocumentoTipoEnum.getDocumentoTipoFromCodigo(lojaForm.getDocumentoTipo())
 //												, documento
 //												, lojaForm.getNomeFantasia()
@@ -162,15 +162,14 @@ public class LojaMB extends AbstractMB implements Serializable {
 		return "";
 	}
 	
-	
-	public List<Loja> getLojas(){
+	public Collection<Loja> getTodasLojas(){
 
 		try {
 			
-//			if(lojas == null)
-//				lojas = lojaFacade.listarLojasPorUsuario(controleAcesso.getUsuarioAtual().getId());
+			if(this.lojaForm.getTodasLojas() == null)
+				this.getLojaForm().setTodasLojas(lojaFacade.listarTodasLojas());
 			
-			return lojaForm.getLojas();
+			return this.lojaForm.getTodasLojas();
 			
 		} catch (Exception e) {
 			displayErrorMessageToUser("Falha ao buscar lojas.", e.getLocalizedMessage());
@@ -181,28 +180,6 @@ public class LojaMB extends AbstractMB implements Serializable {
 		
 	}
 	
-	public String fornecerPontos(){
-		
-		try {
-			
-//			usuario.setNome("TESTE DE NOME");
-			
-//			pontosGerados.setLojaId(controleAcesso.getLojaAtual().getId());
-//			pontosGerados.setUsuarioExecutanteId(controleAcesso.getUsuario().getId());
-			
-			//buscar id do usuario para mandar 
-//			pontosGerados.setUsuarioId(1);
-			
-//			pontosGeradosFacade.incluirPontos(pontosGerados);
-			
-		} catch (Exception e) {
-			displayErrorMessageToUser("Falha ao incluir pontos.", e.getLocalizedMessage());
-			e.printStackTrace();
-		}
-
-		return "";
-		
-	}
 
 	public LojaForm getLojaForm() {
 		return lojaForm;

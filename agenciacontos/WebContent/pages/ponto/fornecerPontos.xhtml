@@ -27,12 +27,14 @@
 							<label for="documento" class="col-md-2 control-label">
 								Identificação
 							</label>
-							<div class="col-sm-6">
+							<div class="col-sm-10">
 								<ct:selectEmailCpfCnpj emailValue="#{pontoMB.pontoForm.email}"
 														cpfValue="#{pontoMB.pontoForm.cpf}"
 														cnpjValue="#{pontoMB.pontoForm.cnpj}"
 														usuarioIdentificacaoTipo="#{pontoMB.pontoForm.usuarioIdentificacaoTipo}"
-														identificador="forPt" />
+														identificador="forPt"
+														mostrarNomeAction="#{pontoMB.mostrarNomeCliente()}"
+														nomeValue="#{pontoMB.pontoForm.nomeCliente}" />
 							</div>
 							<!-- /.col-sm-6 -->
 						</div>
@@ -45,7 +47,7 @@
 						</h:panelGroup>
 						
 						<h:panelGroup layout="block" styleClass="form-group">
-							<label for="pontos" class="col-md-2 control-label">Valor</label>
+							<label for="valor" class="col-md-2 control-label">Valor</label>
 							<div class="col-sm-4">
 								<div class="input-group">
 				                    <span class="input-group-addon">
@@ -57,7 +59,7 @@
 						</h:panelGroup>
 											
 						<div class="form-group">
-							<label for="nome" class="col-md-2 control-label">Validade</label>
+							<label for="validade" class="col-md-2 control-label">Validade</label>
 							<div class="col-sm-4">
 				                <div class="input-group pickerDiaMesAno">
 				                    <h:inputText value="#{pontoMB.pontoForm.validade}" converter="dataConverter" id="validade" styleClass="form-control pickerDiaMesAno" />
@@ -69,9 +71,16 @@
 						</div>
 					
 						<div class="form-group">
-							<label for="senha" class="col-md-2 control-label">Descrição</label>
+							<label for="descricao" class="col-md-2 control-label">Descrição</label>
 							<div class="col-sm-10">
 								<h:inputTextarea value="#{pontoMB.pontoForm.descricao}" id="descricao" styleClass="form-control" />
+							</div>
+						</div>
+					
+						<div class="form-group">
+							<label for="cartao" class="col-md-2 control-label">Cartão</label>
+							<div class="col-sm-10">
+								<h:inputText value="#{pontoMB.pontoForm.cartao}" id="cartao" styleClass="form-control" />
 							</div>
 						</div>
 					
@@ -79,8 +88,8 @@
 							<label class="col-md-2 control-label">
 								
 							</label>
-							<div class="col-sm-6">
-								<h:commandButton styleClass="btn btn-primary" id="fornecerPontos" action="#{lojaMB.fornecerPontos()}" value="Cadastrar" />
+							<div class="col-sm-2">
+								<h:commandButton styleClass="btn btn-primary" id="fornecerPontos" action="#{pontoMB.fornecerPontos}" value="Cadastrar" />
 							</div>
 						</div>
 					

@@ -128,6 +128,41 @@
 		
 	</div>
 	
+	<div class="row">
+		<div class="col-md-12">
+
+			<div class="panel panel-default">
+				<div class="panel-body">
+		
+					<h:form role="form" styleClass="form-horizontal">
+						
+						<h:dataTable styleClass="table table-hover" value="#{lojaMB.todasLojas}" var="loja">
+							<h:column>
+    							<f:facet name="header">Id</f:facet>
+    							#{loja.id}
+    						</h:column>
+							<h:column>
+    							<f:facet name="header">Nome</f:facet>
+    							#{loja.nomeFantasia}
+    						</h:column>
+							<h:column>
+    							<f:facet name="header">Matriz</f:facet>
+    							#{loja.indicadorMatriz}
+    						</h:column>
+							<h:column>
+    							<f:facet name="header"></f:facet>
+    							<h:commandButton value="Vincular" action="#{lojaMB.vincularLojaPessoa}" />
+    						</h:column>
+						</h:dataTable>
+						
+					</h:form>
+		
+				</div>
+			</div>
+	
+		</div>
+	</div>
+	
 	</ui:define>
 </ui:composition>
 
