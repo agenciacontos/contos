@@ -24,7 +24,7 @@
 					<h:form role="form" styleClass="form-horizontal">
 								
 						<div class="form-group">
-							<label for="documento" class="col-md-2 control-label">
+							<label for="documento" class="col-md-3 control-label">
 								Documento
 							</label>
 							<div class="col-sm-6">
@@ -37,27 +37,34 @@
 						</div>
 						
 						<div class="form-group">
-							<label for="email" class="col-md-2 control-label">E-mail</label>
-							<div class="col-sm-10">
+							<label for="email" class="col-md-3 control-label">E-mail</label>
+							<div class="col-sm-9">
 								<h:inputText pt:type="email" value="#{lojaMB.lojaForm.email}" id="email" pt:placeholder="E-Mail" styleClass="form-control" />
 							</div>
 						</div>
 					
 						<div class="form-group">
-							<label for="nome" class="col-md-2 control-label">Nome Fantasia</label>
-							<div class="col-sm-10">
+							<label for="nome" class="col-md-3 control-label">Nome Fantasia</label>
+							<div class="col-sm-9">
 								<h:inputText pt:required="true" value="#{lojaMB.lojaForm.nomeFantasia}" id="nome" pt:placeholder="Digite seu nome" styleClass="form-control" />
 							</div>
 						</div>
 					
 						<div class="form-group">
-							<label for="senha" class="col-md-2 control-label">Matriz</label>
-							<div class="col-sm-10">
+							<label for="senha" class="col-md-3 control-label">Matriz</label>
+							<div class="col-sm-9">
 								Sim ou Não
 							</div>
 						</div>
-					
-						<h:commandButton styleClass="btn btn-default" id="cadastrarUsuario" action="#{lojaMB.cadastrarLoja()}" value="Cadastrar" />
+						
+						<div class="form-group">
+							<label class="col-md-3 control-label">
+								
+							</label>
+							<div class="col-sm-6">
+								<h:commandButton styleClass="btn btn-primary" id="cadastrarUsuario" action="#{lojaMB.cadastrarLoja()}" value="Cadastrar" />
+							</div>
+						</div>
 						
 					</h:form>
 		
@@ -77,8 +84,8 @@
 					<h:form role="form" styleClass="form-horizontal">
 										
 						<div class="form-group">
-							<label for="documento" class="col-md-2 control-label">
-								Documento da loja
+							<label class="col-md-2 control-label">
+								Loja
 							</label>
 							<div class="col-sm-6">
 								<ct:selectCpfCnpj   cpfValue="#{lojaMB.lojaForm.cpfLoja}"
@@ -86,12 +93,11 @@
 													documentoTipoValue="#{lojaMB.lojaForm.documentoTipoLoja}"
 													identificador="docLoja" />
 							</div>
-							<!-- /.col-sm-6 -->
 						</div>
 										
 						<div class="form-group">
-							<label for="documento" class="col-md-2 control-label">
-								Documento do usuário
+							<label class="col-md-2 control-label">
+								Usuário
 							</label>
 							<div class="col-sm-6">
 								<ct:selectCpfCnpj   cpfValue="#{lojaMB.lojaForm.cpfPessoa}"
@@ -99,11 +105,18 @@
 													documentoTipoValue="#{lojaMB.lojaForm.documentoTipoPessoa}"
 													identificador="docPessoa" />
 							</div>
-							<!-- /.col-sm-6 -->
+						</div>
+						
+						<div class="form-group">
+							<label class="col-md-2 control-label">
+								
+							</label>
+							<div class="col-sm-6">
+								<h:commandButton styleClass="btn btn-primary" id="cadastrarUsuario" action="#{lojaMB.vincularLojaPessoa()}" value="Vincular" />
+							</div>
 						</div>
 						
 					
-						<h:commandButton styleClass="btn btn-default" id="cadastrarUsuario" action="#{lojaMB.vincularLojaPessoa()}" value="Cadastrar" />
 						
 					</h:form>
 				</div>
