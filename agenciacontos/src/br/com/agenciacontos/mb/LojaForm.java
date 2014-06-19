@@ -30,7 +30,9 @@ public class LojaForm implements Serializable  {
 	private boolean indicadorMatriz = false;
 	
 	private Collection<Loja> lojasClienteLogado;
-	private Collection<Loja> todasLojas;
+	
+	private Collection<LojaVincular> listaLojaVincular;
+	private LojaVincular lojaVincularSelecionada;
 
 	public Integer getDocumentoTipo() {
 		return documentoTipo;
@@ -152,12 +154,20 @@ public class LojaForm implements Serializable  {
 		this.lojasClienteLogado = lojasClienteLogado;
 	}
 
-	public Collection<Loja> getTodasLojas() {
-		return todasLojas;
+	public LojaVincular getLojaVincularSelecionada() {
+		return lojaVincularSelecionada;
 	}
 
-	public void setTodasLojas(Collection<Loja> todasLojas) {
-		this.todasLojas = todasLojas;
+	public void setLojaVincularSelecionada(LojaVincular lojaVincularSelecionada) {
+		this.lojaVincularSelecionada = lojaVincularSelecionada;
+	}
+
+	public Collection<LojaVincular> getListaLojaVincular() {
+		return listaLojaVincular;
+	}
+
+	public void setListaLojaVincular(Collection<LojaVincular> listaLojaVincular) {
+		this.listaLojaVincular = listaLojaVincular;
 	}
 	
 	

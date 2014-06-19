@@ -6,19 +6,19 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "pessoa_loja")
+@IdClass(PessoaLojaPK.class)
 public class PessoaLoja implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name = "pessoa_id", nullable = false, length = 11)
-	private int usuarioId;
+	private int pessoaId;
 	
 	@Id
-	@Column(name = "loja_id", nullable = false, length = 11)
 	private int lojaId;
 	
 	@Column(name = "funcao", nullable = true)
@@ -32,7 +32,7 @@ public class PessoaLoja implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return usuarioId+lojaId;
+		return pessoaId+lojaId;
 	}
 
 	@Override
@@ -44,14 +44,6 @@ public class PessoaLoja implements Serializable{
 	@Override
 	public String toString() {
 		return "";
-	}
-
-	public int getUsuarioId() {
-		return usuarioId;
-	}
-
-	public void setUsuarioId(int usuarioId) {
-		this.usuarioId = usuarioId;
 	}
 
 	public int getLojaId() {
@@ -84,6 +76,14 @@ public class PessoaLoja implements Serializable{
 
 	public void setModificado(Date modificado) {
 		this.modificado = modificado;
+	}
+
+	public int getPessoaId() {
+		return pessoaId;
+	}
+
+	public void setPessoaId(int pessoaId) {
+		this.pessoaId = pessoaId;
 	}
 	
 }

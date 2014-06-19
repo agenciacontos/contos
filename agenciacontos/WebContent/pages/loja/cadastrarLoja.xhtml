@@ -74,84 +74,48 @@
 		</div>
 		
 		<div class="col-md-6">
-		
-			<div class="panel panel-default">
-			
-				<div class="panel-heading">Vincular Loja ao usuário</div>
-			
-				<div class="panel-body">
-		
-					<h:form role="form" styleClass="form-horizontal">
-										
-						<div class="form-group">
-							<label class="col-md-2 control-label">
-								Loja
-							</label>
-							<div class="col-sm-10">
-								<ct:selectCpfCnpj   cpfValue="#{lojaMB.lojaForm.cpfLoja}"
-													cnpjValue="#{lojaMB.lojaForm.cnpjLoja}"
-													documentoTipoValue="#{lojaMB.lojaForm.documentoTipoLoja}"
-													identificador="docLoja"
-													mostrarNomeAction="#{lojaMB.mostrarNomeLoja()}"
-													nomeValue="#{lojaMB.lojaForm.nomeLoja}" />
-							</div>
-							
-						</div>
-										
-						<div class="form-group">
-							<label class="col-md-2 control-label">
-								Usuário
-							</label>
-							<div class="col-sm-10">
-								<ct:selectCpfCnpj   cpfValue="#{lojaMB.lojaForm.cpfPessoa}"
-													cnpjValue="#{lojaMB.lojaForm.cnpjPessoa}"
-													documentoTipoValue="#{lojaMB.lojaForm.documentoTipoPessoa}"
-													identificador="docPessoa"
-													mostrarNomeAction="#{lojaMB.mostrarNomePessoa()}"
-													nomeValue="#{lojaMB.lojaForm.nomePessoa}" />
-							</div>
-						</div>
-						
-						<div class="form-group">
-							<label class="col-md-2 control-label">
-								
-							</label>
-							<div class="col-sm-6">
-								<p:commandLink styleClass="btn btn-primary" id="cadastrarUsuario" action="#{lojaMB.vincularLojaPessoa()}" value="Vincular" />
-							</div>
-						</div>
-						
-					</h:form>
-				</div>
-			</div>
-		</div>
-		
-	</div>
-	
-	<div class="row">
-		<div class="col-md-12">
 
 			<div class="panel panel-default">
 				<div class="panel-body">
 		
 					<h:form role="form" styleClass="form-horizontal">
 						
-						<h:dataTable styleClass="table table-hover" value="#{lojaMB.todasLojas}" var="loja">
+						<h:dataTable styleClass="table table-hover" value="#{lojaMB.listaLojaVincular}" var="lojaVincular" >
 							<h:column>
     							<f:facet name="header">Id</f:facet>
-    							#{loja.id}
+    							#{lojaVincular.loja.id}
     						</h:column>
 							<h:column>
     							<f:facet name="header">Nome</f:facet>
-    							#{loja.nomeFantasia}
-    						</h:column>
-							<h:column>
-    							<f:facet name="header">Matriz</f:facet>
-    							#{loja.indicadorMatriz}
+    							#{lojaVincular.loja.nomeFantasia}
     						</h:column>
 							<h:column>
     							<f:facet name="header"></f:facet>
-    							<h:commandButton value="Vincular" action="#{lojaMB.vincularLojaPessoa}" />
+    							<p:commandButton id="vincularLoja" value="Vincular responsável" type="button" />
+							    <p:overlayPanel id="moviePanel" for="vincularLoja" hideEffect="fade" dynamic="true">
+							        <div class="form-group">
+										<label class="col-md-2 control-label">
+											Usuário
+										</label>
+										<div class="col-sm-10">
+											<ct:selectCpfCnpj   cpfValue="#{lojaVincular.cpf}"
+																cnpjValue="#{lojaVincular.cnpj}"
+																documentoTipoValue="#{lojaVincular.documentoTipo}"
+																identificador="docVincular#{lojaVincular.loja.id}" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-2 control-label">
+											
+										</label>
+										<div class="col-sm-6">
+	    									<h:commandButton styleClass="btn btn-default" value="Adicionar responsável" action="#{lojaMB.vincularLojaPessoa}">
+	    										<f:setPropertyActionListener target="#{lojaMB.lojaForm.lojaVincularSelecionada}" value="#{lojaVincular}" />
+	    									</h:commandButton>
+										</div>
+									</div>
+							    </p:overlayPanel>
+							    
     						</h:column>
 						</h:dataTable>
 						
@@ -160,7 +124,7 @@
 				</div>
 			</div>
 	
-		</div>
+		</div>		
 	</div>
 	
 	</ui:define>

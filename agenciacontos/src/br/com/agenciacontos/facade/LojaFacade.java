@@ -29,7 +29,7 @@ public class LojaFacade extends AbstractFacade implements Serializable{
 	public Loja cadastrarLoja(DocumentoTipoEnum documentoTipo, String documento, String nomeFantasia, String email, boolean indicadorMatriz) throws Exception {
 		
 		if(emailDAO.isEmailExistente(email)){
-		throw new Exception("O e-mail utilizado ja consta na base de dados.");
+			throw new Exception("O e-mail utilizado ja consta na base de dados.");
 		}
 		if(pessoaDAO.isDocumentoCadastrado(documento, documentoTipo)){
 			throw new Exception("O documento utilizado ja consta na base de dados.");
@@ -59,12 +59,6 @@ public class LojaFacade extends AbstractFacade implements Serializable{
 		return loja;
 		
 	}
-	
-	public List<Loja> vincularLojaPessoa(DocumentoTipoEnum documentoTipoLoja, String documentoLoja, DocumentoTipoEnum documentoTipoPessoa, String documentoPessoa) throws Exception {
-
-		
-		return null;
-	}	
 	
 	public List<Loja> listarLojasPorUsuario(Integer pessoaId) throws Exception {
 

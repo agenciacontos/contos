@@ -12,8 +12,10 @@ import javax.inject.Named;
 import br.com.agenciacontos.enums.DocumentoTipoEnum;
 import br.com.agenciacontos.facade.LojaFacade;
 import br.com.agenciacontos.facade.PessoaFacade;
+import br.com.agenciacontos.facade.PessoaLojaFacade;
 import br.com.agenciacontos.model.Loja;
 import br.com.agenciacontos.model.Pessoa;
+import br.com.agenciacontos.model.PessoaLoja;
 import br.com.agenciacontos.seguranca.ControleAcesso;
 
 @Named
@@ -25,9 +27,9 @@ public class LojaMB extends AbstractMB implements Serializable {
 	
 	@Inject private LojaFacade lojaFacade;
 	@Inject private PessoaFacade pessoaFacade;
+	@Inject private PessoaLojaFacade pessoaLojaFacade;
 	
 	private LojaForm lojaForm;
-	
 	
 	@PostConstruct
 	protected void init() {  
@@ -100,28 +102,22 @@ public class LojaMB extends AbstractMB implements Serializable {
 		
 		try {
 			
-			String documentoLoja = null;
-			if(lojaForm.getDocumentoTipoLoja().equals(DocumentoTipoEnum.CPF.getCodigo())){
-				documentoLoja = lojaForm.getCpfLoja();
+			String documento = null;
+			if(lojaForm.getLojaVincularSelecionada().getDocumentoTipo().equals(DocumentoTipoEnum.CPF.getCodigo())){
+				documento = lojaForm.getLojaVincularSelecionada().getCpf();
 			}else{
-				documentoLoja = lojaForm.getCnpjLoja();
+				documento = lojaForm.getLojaVincularSelecionada().getCnpj();
 			}
 			
-			String documentoPessoa = null;
-			if(lojaForm.getDocumentoTipoPessoa().equals(DocumentoTipoEnum.CPF.getCodigo())){
-				documentoPessoa = lojaForm.getCpfPessoa();
-			}else{
-				documentoPessoa = lojaForm.getCnpjPessoa();
+			Pessoa pessoa = pessoaFacade.detalharPessoaPorDocumento(DocumentoTipoEnum.getDocumentoTipoFromCodigo(lojaForm.getLojaVincularSelecionada().getDocumentoTipo()), documento);
+			if(pessoa == null){
+				displayErrorMessageToUser("Falha", "Usuário não encontrado.");
+				return "";
 			}
-		
-			// TODO fazer a vinculacao
-//			Loja loja = lojaFacade.cadastrarLoja(DocumentoTipoEnum.getDocumentoTipoFromCodigo(lojaForm.getDocumentoTipo())
-//												, documento
-//												, lojaForm.getNomeFantasia()
-//												, lojaForm.getEmail()
-//												, lojaForm.isIndicadorMatriz());
 			
-//			displayInfoMessageToUser("Cadastro efetuado com sucesso!", loja.getNomeFantasia());
+			PessoaLoja pessoaLoja = pessoaLojaFacade.vincularLojaPessoa(lojaForm.getLojaVincularSelecionada().getLoja().getId(), pessoa.getId());
+			
+			displayInfoMessageToUser("Sucesso.", "Agora é representante.");
 			
 		} catch (Exception e) {
 			
@@ -162,21 +158,37 @@ public class LojaMB extends AbstractMB implements Serializable {
 		return "";
 	}
 	
-	public Collection<Loja> getTodasLojas(){
+	public Collection<LojaVincular> getListaLojaVincular(){
 
 		try {
 			
-			if(this.lojaForm.getTodasLojas() == null)
-				this.getLojaForm().setTodasLojas(lojaFacade.listarTodasLojas());
+			if(this.lojaForm.getListaLojaVincular() == null){
+				
+				Collection<Loja> lojas = lojaFacade.listarTodasLojas();
+
+				Collection<LojaVincular> listaLojaVincularForm = new ArrayList<LojaVincular>();
+				for (Loja loja : lojas) {
+					
+					LojaVincular lojaVincularForm = new LojaVincular();
+					lojaVincularForm.setLoja(loja);
+					
+					listaLojaVincularForm.add(lojaVincularForm);
+					
+				}
+				
+				this.getLojaForm().setListaLojaVincular(listaLojaVincularForm);
+				
+			}
 			
-			return this.lojaForm.getTodasLojas();
+			
+			return this.getLojaForm().getListaLojaVincular();
 			
 		} catch (Exception e) {
 			displayErrorMessageToUser("Falha ao buscar lojas.", e.getLocalizedMessage());
 			e.printStackTrace();
 		}
 		
-		return new ArrayList<Loja>();
+		return new ArrayList<LojaVincular>();
 		
 	}
 	
