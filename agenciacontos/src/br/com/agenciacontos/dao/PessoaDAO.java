@@ -61,7 +61,7 @@ public class PessoaDAO extends GenericDAO<Pessoa> {
 		Long qtd = (Long) getSession()
 							.createCriteria(Pessoa.class)
 							.add(Restrictions.eq("documento", documento))
-							.add(Restrictions.eq("documentoTipo", documentoTipo))
+							.add(Restrictions.eq("documentoTipo", documentoTipo.getCodigo()))
 							.setProjection(Projections.rowCount())
 							.uniqueResult();
 		
